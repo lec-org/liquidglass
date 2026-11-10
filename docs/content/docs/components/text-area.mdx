@@ -1,0 +1,32 @@
+---
+title: TextArea 多行输入
+description: 玻璃与填充两种表面，支持字数统计和原生表单。
+---
+
+<ComponentPreview name="text-area" />
+
+## 使用说明
+
+受控模式使用 `value` 与 `onValueChange`，非受控模式使用 `defaultValue`。通过 `label` 与 `id` 关联输入名称。
+
+- `variant="glass"` 使用玻璃表面，`fill` 使用实色填充。
+- `showCount` 显示当前长度；结合 `maxLength` 显示“当前 / 上限”。长度与浏览器原生 `maxLength` 一致，按 UTF-16 代码单元计数。
+- `resize` 默认为 `none`，不显示原生拖拽手柄。需要调整高度时显式设置 `vertical`，需要双向缩放时设置 `both`。
+- 保留 `rows`、`name`、`required`、`readOnly`、`disabled` 和原生事件。`ref` 指向 textarea。
+- 非受控表单重置会同时恢复文字和计数；受控值需要由父组件在重置时更新。
+
+## 校验提示
+
+`required`、`minLength` 等原生约束继续阻止无效提交。校验失败时，组件使用红色边框和输入框下方的错误文字，自动聚焦输入框；不弹出浏览器默认气泡。内容有效或表单重置后清除提示。
+
+业务错误可通过 `error` 传入，例如服务器返回的长度限制或敏感内容提示。错误使用 `role="alert"`，并通过 `aria-invalid` 与 `aria-describedby` 关联输入。
+
+## API
+
+属性表从实际 TypeScript 类型生成。原生 DOM 属性按组件定义透传。
+
+<auto-type-table
+  cwd
+  path="../src/text-area.tsx"
+  type="Pick<TextAreaProps, 'value' | 'defaultValue' | 'onValueChange' | 'variant' | 'rows' | 'maxLength' | 'showCount' | 'resize' | 'disabled' | 'error'>"
+/>

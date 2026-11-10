@@ -1,0 +1,36 @@
+---
+title: Menu 菜单
+description: 从按钮展开操作菜单，支持分组和选中状态。
+---
+
+<ComponentPreview name="menu" />
+
+## 使用说明
+
+items 和 renderContent 二选一。默认 items 模式负责菜单条目的键盘操作；自定义内容模式中，菜单负责开关、定位与焦点恢复，自定义内容负责内部键盘导航。
+
+## API
+
+下面的属性从组件 TypeScript 定义生成。继承的原生 DOM 属性按需传入；表格聚焦组件常用属性。
+
+<auto-type-table
+  cwd
+  path="../src/menu.tsx"
+  type="Pick<MenuProps, 'aria-label' | 'label' | 'items' | 'renderContent' | 'align' | 'open' | 'defaultOpen' | 'onOpenChange' | 'chevron'>"
+/>
+
+## 自定义内容
+
+`renderContent` 会得到 `close` 方法。给首个可聚焦元素添加 `data-lg-menu-initial-focus`，并为内容设计合适的键盘操作。
+
+```tsx
+<Menu
+  aria-label="自定义操作"
+  label="更多"
+  renderContent={({ close }) => (
+    <button data-lg-menu-initial-focus onClick={close}>
+      完成
+    </button>
+  )}
+/>
+```

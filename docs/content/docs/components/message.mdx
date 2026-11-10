@@ -1,0 +1,20 @@
+---
+title: Message 消息提示
+description: 在内容附近展示结果、提示和重试操作。
+---
+
+<ComponentPreview name="message" />
+
+## 使用说明
+
+tone 可选 info（默认）或 error。action 由 label 和 onClick 组成，用于重试等简短操作。
+
+## API
+
+下面的属性从组件 TypeScript 定义生成。继承的原生 DOM 属性按需传入；表格聚焦组件常用属性。
+
+<auto-type-table
+  cwd
+  path="../src/message.tsx"
+  type="Pick<MessageProps, 'children' | 'tone' | 'action'>"
+/>

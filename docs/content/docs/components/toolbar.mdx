@@ -1,0 +1,24 @@
+---
+title: Toolbar 工具栏
+description: 用 ToolbarGroup 组织常用操作。
+---
+
+<ComponentPreview name="toolbar" />
+
+## 使用说明
+
+Toolbar 继承 div 属性，edge 可选 uniform、soft、none。ToolbarGroup 用于分组按钮；图标操作应提供明确的 aria-label。示例使用相对定位以放入文档画布。
+
+## API
+
+下面的属性从组件 TypeScript 定义生成。继承的原生 DOM 属性按需传入；表格聚焦组件常用属性。
+
+<auto-type-table
+  cwd
+  path="../src/toolbar.tsx"
+  type="Pick<ToolbarProps, 'edge' | 'children' | 'className' | 'style'>"
+/>
+
+### ToolbarGroup
+
+`ToolbarGroup` 接收原生 `div` 属性，用于组合相关按钮。

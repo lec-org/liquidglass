@@ -1,0 +1,20 @@
+---
+title: SegmentedControl 分段选择
+description: 以滑动高亮切换一组互斥选项。
+---
+
+<ComponentPreview name="segmented-control" />
+
+## 使用说明
+
+每个选项需要稳定且唯一的 value。组件使用 roving tabindex 管理焦点，方向键可在选项间移动。
+
+## API
+
+下面的属性从组件 TypeScript 定义生成。继承的原生 DOM 属性按需传入；表格聚焦组件常用属性。
+
+<auto-type-table
+  cwd
+  path="../src/segmented-control.tsx"
+  type="Pick<SegmentedControlProps, 'items' | 'value' | 'defaultValue' | 'onValueChange'>"
+/>

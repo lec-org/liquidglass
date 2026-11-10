@@ -1,0 +1,24 @@
+---
+title: Tag 标签
+description: 用轻量的玻璃色块表达分类与状态。
+---
+
+<ComponentPreview name="tag" />
+
+## 使用说明
+
+`tone` 提供 neutral / info / success / warning / danger 五种语义颜色。用文字表达状态，不只依赖颜色。
+
+传入 `onClose` 显示关闭按钮；数据删除由调用方完成，组件不会自行隐藏。为每个关闭按钮提供明确的 `closeLabel`，例如“移除数组”。`icon` 可组合已有图标库。
+
+Tag 是信息标签，不是可选控件。选择一组条件时使用 Checkbox 或 Select。
+
+## API
+
+属性表从实际 TypeScript 类型生成。原生 DOM 属性按组件定义透传。
+
+<auto-type-table
+  cwd
+  path="../src/tag.tsx"
+  type="Pick<TagProps, 'tone' | 'icon' | 'onClose' | 'closeLabel' | 'children'>"
+/>

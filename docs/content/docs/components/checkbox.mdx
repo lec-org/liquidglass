@@ -1,0 +1,29 @@
+---
+title: Checkbox 多选框
+description: 带半选状态的原生多选框，适合独立开关和批量选择。
+---
+
+<ComponentPreview name="checkbox" />
+
+## 使用说明
+
+使用 `children` 作为可点击的标签，`description` 提供辅助说明；只有图形时必须提供 `aria-label`。
+
+- 受控：`checked` + `onCheckedChange`；非受控：`defaultChecked`。
+- `indeterminate` 由调用方根据子选项计算，不代表第三种提交值。上面的示例展示全选、半选和取消全选。
+- 继承原生 `input` 属性，包括 `name`、`value`、`required`、`form`、`disabled` 与 `onChange`。只有勾选的项进入 `FormData`。
+- 非受控输入支持原生表单重置；受控输入的重置由父组件更新 `checked`。
+
+## 键盘操作
+
+Tab 聚焦，空格切换。禁用状态不接受操作；半选状态使用浏览器原生 `indeterminate` 语义。
+
+## API
+
+属性表从实际 TypeScript 类型生成。原生 DOM 属性按组件定义透传。
+
+<auto-type-table
+  cwd
+  path="../src/checkbox.tsx"
+  type="Pick<CheckboxProps, 'checked' | 'defaultChecked' | 'onCheckedChange' | 'indeterminate' | 'description' | 'disabled' | 'required' | 'name'>"
+/>

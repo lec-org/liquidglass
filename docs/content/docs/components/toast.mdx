@@ -1,0 +1,37 @@
+---
+title: Toast 全局提示
+description: 支持队列、暂停计时和操作按钮的玻璃通知。
+---
+
+<ComponentPreview name="toast" />
+
+## 使用说明
+
+在应用根部放置一次 `ToastProvider`，子组件调用 `useToast()` 获得 `toast`、`dismiss` 和 `dismissAll`。上面的示例使用局部 Provider，离开示例会清理通知与计时器。
+
+```tsx
+const { toast, dismiss } = useToast();
+const id = toast({ title: "导出中…", duration: 0 });
+// 异步操作结束后关闭指定提示。
+dismiss(id);
+```
+
+- 默认显示 4500 ms。`duration: 0` 常驻，用户可以手动关闭；含关键操作的提示建议常驻。
+- 超出 `maxVisible` 的通知排队等待，真正显示时才开始计时。
+- 鼠标悬停、提示内部获得焦点或页面隐藏时暂停倒计时。
+- `tone` 支持 info / success / warning / error。普通提示使用 status，错误使用 alert。
+- `action` 提供一个操作按钮，执行后关闭；`onDismiss` 在移除时调用一次。
+- Toast 不抢焦点。用户在提示内部关闭时，焦点返回触发位置；自动关闭不打断当前输入。
+- 可以直接使用 `Toast` 渲染提示视图，此时调用方负责在 `onDismiss` 中将它移除。
+
+## Provider API
+
+<auto-type-table cwd path="../src/toast.tsx" type="ToastProviderProps" />
+
+## 通知 API
+
+<auto-type-table cwd path="../src/toast.tsx" type="ToastOptions" />
+
+## Hook API
+
+<auto-type-table cwd path="../src/toast.tsx" type="ToastApi" />

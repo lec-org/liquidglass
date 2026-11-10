@@ -1,0 +1,27 @@
+---
+title: Badge 徽标
+description: 数字或圆点轻量提示消息数量与状态。
+---
+
+<ComponentPreview name="badge" />
+
+## 使用说明
+
+有 `children` 时徽标定位在内容右上角；没有时作为独立徽标显示。
+
+- `count` 默认 0，默认隐藏零值；`showZero` 显示 0。
+- `max` 默认 99，超出显示 99+；可访问描述仍保留实际数字。
+- `dot` 优先使用圆点，不显示计数。
+- `label` 提供带业务含义的描述，例如“5 条未读通知”或“在线”。
+
+徽标本身不承担点击行为；可以包裹 Button、Avatar 等组件。
+
+## API
+
+属性表从实际 TypeScript 类型生成。原生 DOM 属性按组件定义透传。
+
+<auto-type-table
+  cwd
+  path="../src/badge.tsx"
+  type="Pick<BadgeProps, 'count' | 'max' | 'dot' | 'showZero' | 'tone' | 'label' | 'children'>"
+/>

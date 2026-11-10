@@ -1,0 +1,20 @@
+---
+title: TabBar 标签导航
+description: 带玻璃滑动选中效果的应用导航。
+---
+
+<ComponentPreview name="tab-bar" />
+
+## 使用说明
+
+items 中的 value 必须唯一。提供 href 可作为链接导航；接入路由时可通过 link 指定路由链接组件。minimized 控制收起状态，点击后通过 onExpand 请求展开。
+
+## API
+
+下面的属性从组件 TypeScript 定义生成。继承的原生 DOM 属性按需传入；表格聚焦组件常用属性。
+
+<auto-type-table
+  cwd
+  path="../src/tab-bar.tsx"
+  type="Pick<TabBarProps, 'items' | 'value' | 'defaultValue' | 'onValueChange' | 'minimized' | 'onExpand' | 'link'>"
+/>

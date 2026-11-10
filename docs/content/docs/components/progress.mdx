@@ -1,0 +1,24 @@
+---
+title: Progress 进度与加载
+description: 展示有确定进度的任务与不确定的等待。
+---
+
+<ComponentPreview name="progress" />
+
+## 使用说明
+
+Progress 的 value 范围为 0–1。Spinner 用于进度未知的任务，支持原生 span 属性。请同时提供任务文字说明，不要只显示动画。
+
+## API
+
+下面的属性从组件 TypeScript 定义生成。继承的原生 DOM 属性按需传入；表格聚焦组件常用属性。
+
+<auto-type-table
+  cwd
+  path="../src/progress.tsx"
+  type="Pick<ProgressProps, 'value' | 'className' | 'style'>"
+/>
+
+### Spinner
+
+`Spinner` 接收原生 `span` 属性，可使用 `aria-label` 描述等待状态。

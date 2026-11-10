@@ -1,0 +1,48 @@
+---
+title: 兼容性与可访问性
+description: 理解玻璃效果的渲染条件，保持不同环境下的内容清晰和操作可用。
+---
+
+## 渲染方式
+
+当前实现会检测浏览器对 SVG backdrop filter 的支持；支持时在真实背景上折射，其他路径会对标记的背景副本应用滤镜。不同浏览器的效果不保证逐像素一致。
+
+组件基本交互依赖 React 和浏览器 DOM。`Menu` 的浮层实现会检测原生 Popover API，不应将某一个浏览器截图当作所有环境的承诺。
+
+## 标记背景
+
+Safari / Firefox 的背景复制路径需要显式标记背景元素。仅标记作为背景的内容，不要把包含整个交互界面的根节点也标记进去。
+
+```tsx
+<div style={{ position: "relative", isolation: "isolate" }}>
+  <div
+    data-liquidglass-backdrop
+    aria-hidden="true"
+    style={{
+      position: "absolute",
+      inset: 0,
+      zIndex: -1,
+      background: "linear-gradient(120deg, #e9edcf, #8ebca9)",
+    }}
+  />
+  <Glass style={{ padding: 24 }}>玻璃上的内容</Glass>
+</div>
+```
+
+动态视频、跨域图片、复杂页面的背景复制需要在目标浏览器单独验证。优先使用清晰的背景层，控制同屏复杂滤镜数量。
+
+## 键盘与命名
+
+- 图标按钮使用 `aria-label`。
+- 输入、滑块和开关关联 `label`，或提供 `aria-label`。
+- 菜单、分段选择和导航需要稳定、唯一的选项值。
+- `Menu.renderContent` 由调用方负责内容的键盘导航和语义。
+- 提示和错误使用文字表达，不只依靠颜色。
+
+## 动效与阅读
+
+本站尊重系统的减少动态效果偏好，关闭站点装饰性 CSS 过渡。组件内部的弹簧和指针动效应根据实际使用场景另行验证，不能仅凭 CSS 设置宣称全部动效都已关闭。
+
+## 服务端与静态站点
+
+本组件站会预渲染文档 HTML，然后在浏览器中激活交互。包入口的样式注入在没有 `document` 时跳过；组件交互只在浏览器中运行。

@@ -1,0 +1,27 @@
+---
+title: Skeleton 骨架屏
+description: 用安静的占位结构提示内容正在加载。
+---
+
+<ComponentPreview name="skeleton" />
+
+## 使用说明
+
+通过 `width`、`height` 和 `shape` 拼出与真实内容接近的结构，减少加载完成后的布局跳动。
+
+- `shape` 支持 text / circle / rounded。
+- `animated` 默认开启；系统设置减少动态效果时自动关闭动画。
+- 骨架本身 `aria-hidden`，避免逐行播报。内容容器设置 `aria-busy`，另外提供一条可读的加载说明。
+- 加载状态、错误状态与请求重试由业务管理，组件不内置网络请求。
+
+点击示例按钮，等待 1.2 秒后可以查看真实内容替换占位的过程。
+
+## API
+
+属性表从实际 TypeScript 类型生成。原生 DOM 属性按组件定义透传。
+
+<auto-type-table
+  cwd
+  path="../src/skeleton.tsx"
+  type="Pick<SkeletonProps, 'width' | 'height' | 'shape' | 'animated'>"
+/>

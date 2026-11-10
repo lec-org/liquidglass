@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "directoryListing": false,
+  "headers": [
+    {
+      "source": "/api/search",
+      "headers": [{ "key": "Content-Type", "value": "application/json; charset=utf-8" }]
+    }
+  ]
+}

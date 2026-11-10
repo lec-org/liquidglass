@@ -1,0 +1,26 @@
+---
+title: Card 卡片
+description: 组合封面、标题、内容和操作区的玻璃卡片。
+---
+
+<ComponentPreview name="card" />
+
+## 使用说明
+
+卡片在 `Glass` 基础上提供稳定的内容布局。正文放入 `children`，标题右侧操作放入 `extra`，底部操作放入 `footer`。
+
+- `cover` 可以传入图片或自定义内容，图片应提供合适的 `alt`。
+- `padding` 支持 `small`、`regular`、`large`。
+- 组件默认是普通容器；需要文档标题层级时，在 `title` 中传入合适的 `h2` / `h3`。
+- 卡片本身不模拟按钮。通过内部 Button 或链接提供清晰的交互入口。
+- 加载占位可以组合 Skeleton；没有内容时可以组合 Empty。
+
+## API
+
+属性表从实际 TypeScript 类型生成。原生 DOM 属性按组件定义透传。
+
+<auto-type-table
+  cwd
+  path="../src/card.tsx"
+  type="Pick<CardProps, 'title' | 'description' | 'extra' | 'cover' | 'footer' | 'padding' | 'children'>"
+/>

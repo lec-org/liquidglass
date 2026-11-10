@@ -1,0 +1,27 @@
+---
+title: Avatar 头像
+description: 支持图片、姓名首字和图标回退的玻璃头像。
+---
+
+<ComponentPreview name="avatar" />
+
+## 使用说明
+
+提供 `src` 时显示图片；没有图片或图片加载失败时，依次使用 `children`、`name` 首字和默认人物图标。
+
+- `alt` 或 `name` 为头像提供可访问名称，也可以通过 `aria-label` 覆盖。
+- `size` 支持 small / regular / large，也接受像素数值。
+- `shape` 为 circle 或 rounded。
+- `onImageError` 可记录加载失败；组件自动显示回退内容。更换图片地址后会尝试加载新图片。
+
+示例图片使用内嵌 SVG，断网也能运行；可点击按钮验证加载失败后的回退效果。
+
+## API
+
+属性表从实际 TypeScript 类型生成。原生 DOM 属性按组件定义透传。
+
+<auto-type-table
+  cwd
+  path="../src/avatar.tsx"
+  type="Pick<AvatarProps, 'src' | 'alt' | 'name' | 'children' | 'size' | 'shape' | 'onImageError'>"
+/>

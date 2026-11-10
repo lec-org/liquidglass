@@ -1,0 +1,29 @@
+---
+title: Select 选择器
+description: 带玻璃浮层的单选选择器，支持键盘定位和原生表单。
+---
+
+<ComponentPreview name="select" />
+
+## 使用说明
+
+`options` 使用唯一、非空的字符串 `value` 和纯文本 `label`，可以逐项设置 `disabled`。空字符串保留给未选择状态。
+
+- 受控：`value` + `onValueChange`；非受控：`defaultValue`。选项发生变化时，调用方应确保当前值仍然有效。
+- 使用 `id` 对应外部 `label`，也可以传入 `aria-label` 或 `aria-labelledby`。
+- 通过 `name`、`form` 接入原生表单，隐藏的原生 select 负责 `FormData`、必填校验和重置。未选择必填项时，提交被阻止并聚焦可见按钮；组件会在控件下方显示错误文字，以 `aria-invalid` 与 `aria-describedby` 关联，不使用浏览器默认校验气泡。通过 `error` 可以传入业务错误。
+- `ref` 指向可见按钮，`autoFocus`、焦点与键盘事件也作用于该按钮。首版为单选，不包含多选、远程搜索或虚拟列表。
+
+## 键盘操作
+
+方向键展开并移动高亮，Home / End 移到首尾，Enter / 空格确认。输入名称前缀可以定位选项。Escape 关闭并保留原选择，Tab 关闭后继续正常焦点顺序。禁用选项会被跳过。
+
+## API
+
+属性表从实际 TypeScript 类型生成。原生 DOM 属性按组件定义透传。
+
+<auto-type-table
+  cwd
+  path="../src/select.tsx"
+  type="Pick<SelectProps, 'options' | 'value' | 'defaultValue' | 'onValueChange' | 'placeholder' | 'disabled' | 'required' | 'name' | 'form' | 'error'>"
+/>

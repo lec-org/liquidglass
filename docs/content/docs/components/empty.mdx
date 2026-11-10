@@ -1,0 +1,22 @@
+---
+title: Empty 空状态
+description: 解释当前没有内容的原因，并提供清晰的下一步。
+---
+
+<ComponentPreview name="empty" />
+
+## 使用说明
+
+用 `title` 简要说明当前状态，`description` 解释原因或下一步，`children` 放置操作按钮。默认插画是装饰性的，也可以通过 `icon` 替换。
+
+组件不自行请求数据或导航；示例通过状态更新演示“空收藏夹 → 添加内容 → 恢复空状态”。加载中使用 Skeleton，请求失败时提供明确的错误文字和重试入口。
+
+## API
+
+属性表从实际 TypeScript 类型生成。原生 DOM 属性按组件定义透传。
+
+<auto-type-table
+  cwd
+  path="../src/empty.tsx"
+  type="Pick<EmptyProps, 'title' | 'description' | 'icon' | 'children'>"
+/>

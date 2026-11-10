@@ -1,0 +1,30 @@
+---
+title: Popover 气泡卡片
+description: 从按钮展开一张可交互的玻璃卡片。
+---
+
+<ComponentPreview name="popover" />
+
+## 使用说明
+
+`label` 定义触发按钮文字，`aria-label` 为弹出的对话区域提供名称；图标按钮另外通过 `trigger` 传入按钮的 `aria-label`。
+
+- 普通内容通过 `children` 传入，需要主动关闭时使用 `children={({ close }) => ...}`。
+- 打开后聚焦第一个可操作元素，没有可操作元素时聚焦卡片。非模态弹层不会锁住页面焦点。
+- Escape 与 `close()` 关闭并把焦点归还按钮。点击外部或 Tab 移到外部会关闭，保留用户的新焦点。
+- `side`、`align` 与 `width` 控制初始位置，实际显示受视口空间约束。
+- 受控模式使用 `open` 与 `onOpenChange`。全屏流程或需要模态遮罩的内容使用 Alert / Sheet。
+
+## 主题与浮层
+
+浮层保留在原 DOM 树中以继承局部 CSS 变量，借助原生 Popover API 进入顶层。滚动、窗口变化或内容尺寸变化时重新定位；缺少该 API 的浏览器使用固定定位降级。
+
+## API
+
+属性表从实际 TypeScript 类型生成。原生 DOM 属性按组件定义透传。
+
+<auto-type-table
+  cwd
+  path="../src/popover.tsx"
+  type="Pick<PopoverProps, 'label' | 'aria-label' | 'title' | 'children' | 'trigger' | 'side' | 'align' | 'width' | 'open' | 'defaultOpen' | 'onOpenChange'>"
+/>

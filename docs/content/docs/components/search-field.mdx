@@ -1,0 +1,20 @@
+---
+title: SearchField 搜索框
+description: 带搜索图标的文本输入，可接入自己的筛选逻辑。
+---
+
+<ComponentPreview name="search-field" />
+
+## 使用说明
+
+SearchField 基于 Input，继承其 value / onValueChange。组件负责输入，查询和数据筛选由业务层处理。
+
+## API
+
+下面的属性从组件 TypeScript 定义生成。继承的原生 DOM 属性按需传入；表格聚焦组件常用属性。
+
+<auto-type-table
+  cwd
+  path="../src/search-field.tsx"
+  type="Pick<SearchFieldProps, 'value' | 'defaultValue' | 'onValueChange' | 'variant' | 'placeholder'>"
+/>

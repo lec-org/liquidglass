@@ -1,0 +1,28 @@
+---
+title: Radio 单选框
+description: 保留原生互斥选择、方向键切换与表单提交行为。
+---
+
+<ComponentPreview name="radio" />
+
+## 使用说明
+
+同组单选框使用相同的 `name`，每个选项使用不同的 `value`。使用 `fieldset` 和 `legend` 描述整组选项，多组实例可以通过 React `useId` 隔离名称。
+
+- 非受控模式给一个选项设置 `defaultChecked`；受控模式为每个选项计算 `checked`，在 `onCheckedChange(true)` 时更新整组的值。
+- 组件保留原生 `input` 的 `name`、`form`、`required`、`disabled` 与事件属性。
+- 不需要手写互斥逻辑；浏览器负责表单提交和非受控表单的重置。
+
+## 键盘操作
+
+Tab 进入单选组，方向键在可用选项之间移动并选择，空格选中当前项。
+
+## API
+
+属性表从实际 TypeScript 类型生成。原生 DOM 属性按组件定义透传。
+
+<auto-type-table
+  cwd
+  path="../src/radio.tsx"
+  type="Pick<RadioProps, 'checked' | 'defaultChecked' | 'onCheckedChange' | 'name' | 'value' | 'description' | 'disabled' | 'required'>"
+/>

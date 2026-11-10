@@ -1,0 +1,50 @@
+---
+title: 主题与样式
+description: 用明确的主题作用域、强调色和少量 CSS 变量调整玻璃外观。
+---
+
+## 明暗模式
+
+通过 `data-theme` 显式指定模式。作用在局部容器上时，只影响它的后代；如果浮层挂载到 document.body，需要让根元素的主题与之保持一致。
+
+```tsx
+<div data-theme="light"><Button>浅色玻璃</Button></div>
+<div data-theme="dark"><Button>深色玻璃</Button></div>
+```
+
+未显式指定根主题时，组件会参考系统的 `prefers-color-scheme`。本站右上角的主题开关会同时更新根元素的 `class` 与 `data-theme`，让文档和组件保持一致。
+
+## 强调色
+
+`Button` 的 `tint` 接收 CSS 颜色。对 `glass` 按钮主要影响文字，对 `filled` 按钮影响填充。
+
+```tsx
+<Button tint="#087f6f">玻璃按钮</Button>
+<Button variant="filled" tint="#087f6f">主要操作</Button>
+```
+
+## CSS 变量
+
+样式在组件库的 `src/styles.css` 中定义。优先局部覆盖，避免影响页面中所有组件。
+
+```tsx
+import type { CSSProperties } from "react";
+
+<div style={{ "--lg-transparency": 0.65 } as CSSProperties}>
+  <Glass style={{ padding: 24, borderRadius: 28 }}>你的内容</Glass>
+</div>;
+```
+
+| 变量                | 用途                                                     |
+| ------------------- | -------------------------------------------------------- |
+| `--lg-transparency` | 调整玻璃透明相关的视觉参数；不同浏览器路径的表现可能不同 |
+| `--lg-fill`         | 填充控件的强调色                                         |
+| `--lg-on`           | 开关开启状态颜色                                         |
+| `--lg-foreground`   | 组件前景色                                               |
+| `--lg-muted`        | 次级文字颜色                                             |
+
+这些变量来自当前版本的实现。可以在[效果调试台](/docs/playground)观察改变后与背景的关系。
+
+## 尺寸与布局
+
+用组件提供的 `size` 等属性控制已定义的变体；容器布局用 `className` 或 `style` 完成。保留按钮、滑块等交互元素的实际可点击区域。

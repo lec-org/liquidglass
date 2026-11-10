@@ -1,0 +1,20 @@
+---
+title: Button 按钮
+description: 轻盈的玻璃按钮，支持填充、图标与不同尺寸。
+---
+
+<ComponentPreview name="button" />
+
+## 使用说明
+
+默认 variant 为 glass、size 为 regular。filled 用于主要操作；destructive 用于危险操作。仅有图标的按钮必须提供 aria-label。按钮默认 type="button"，提交表单时显式指定 type="submit"。
+
+## API
+
+下面的属性从组件 TypeScript 定义生成。继承的原生 DOM 属性按需传入；表格聚焦组件常用属性。
+
+<auto-type-table
+  cwd
+  path="../src/button.tsx"
+  type="Pick<ButtonProps, 'variant' | 'size' | 'tint' | 'icon' | 'destructive' | 'disabled'>"
+/>

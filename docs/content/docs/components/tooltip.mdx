@@ -1,0 +1,31 @@
+---
+title: Tooltip 文字提示
+description: 悬停和键盘聚焦时显示简短的玻璃提示。
+---
+
+<ComponentPreview name="tooltip" />
+
+## 使用说明
+
+包裹一个可聚焦的 React 元素。该元素必须把 `aria-describedby` 传到真实 DOM，库内 Button 已支持。Tooltip 会合并已有的描述 ID。
+
+- `side` 支持 top / bottom / left / right；空间不足时自动换边并约束到视口。
+- 鼠标悬停默认延迟 350 ms；键盘聚焦立即显示，Escape 关闭。
+- 鼠标可以移入提示区域继续阅读，离开触发器与提示后关闭。
+- `disabled` 禁用提示；受控使用 `open` + `onOpenChange`。
+
+## 内容与可访问性
+
+提示只放简短说明，不放按钮、输入框或其他交互控件；这些内容使用 Popover。不要用 Tooltip 替代按钮的可访问名称，也不要把必须阅读的信息只放在悬停中。禁用按钮不能聚焦，如需解释禁用原因应提供独立可聚焦的说明入口。
+
+浮层使用浏览器原生 Popover API 进入顶层，同时继承所在区域的主题。无该 API 时使用固定定位，复杂裁剪容器需在目标浏览器验证。
+
+## API
+
+属性表从实际 TypeScript 类型生成。原生 DOM 属性按组件定义透传。
+
+<auto-type-table
+  cwd
+  path="../src/tooltip.tsx"
+  type="Pick<TooltipProps, 'content' | 'children' | 'side' | 'delay' | 'disabled' | 'open' | 'defaultOpen' | 'onOpenChange'>"
+/>

@@ -1,0 +1,61 @@
+---
+title: 快速开始
+description: 在现有 workspace 中接入 Liquid Glass，并渲染第一个组件。
+---
+
+## 环境
+
+组件声明支持 React 18 及以上。当前站点使用 React 19 与 Vite；构建工具需要支持 `styles.css?inline` 的源码导入方式。
+
+## 添加 workspace 依赖
+
+当前包是仓库内的私有 workspace 包，尚未发布到公共 npm。在同一 workspace 的应用 `package.json` 中添加：
+
+```json
+{
+  "dependencies": {
+    "@lec-org/liquidglass": "workspace:*"
+  }
+}
+```
+
+然后在仓库根目录运行 `pnpm install`。其他仓库不能直接通过公共 npm 安装此私有包；独立分发需要先配置构建产物、版本和发布流程。
+
+## 使用组件
+
+```tsx
+import { Button, Glass } from "@lec-org/liquidglass";
+
+export default function Welcome() {
+  return (
+    <Glass style={{ padding: 24, borderRadius: 24 }}>
+      <h2>你好，Liquid Glass。</h2>
+      <Button variant="filled" tint="#087f6f">
+        开始创作
+      </Button>
+    </Glass>
+  );
+}
+```
+
+包入口会在浏览器中注入一次组件 CSS，无需再手动导入 `styles.css`。应用自己的样式放在之后，可以覆盖同等优先级的规则。
+
+## 添加背景
+
+玻璃效果依赖后方内容。渐变、图片和不同色块能比纯白背景更好地表现折射。
+
+在 Safari / Firefox 需要复制背景的实现路径中，用 `data-liquidglass-backdrop` 标记背景元素，详见[兼容性](/docs/compatibility)。
+
+## 受控与非受控
+
+表单组件通常同时提供两种模式：
+
+```tsx
+// 非受控：组件内部维护状态。
+<Switch defaultChecked />
+
+// 受控：由应用管理状态。
+<Switch checked={enabled} onCheckedChange={setEnabled} />
+```
+
+为输入与图标按钮提供可访问名称。实际接口以各组件的 API 表格为准。
