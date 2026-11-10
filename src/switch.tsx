@@ -1,0 +1,220 @@
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  type ButtonHTMLAttributes,
+  type ForwardRefExoticComponent,
+  type RefAttributes,
+} from "react";
+
+import { useControllable } from "./internal/controllable";
+import { cx } from "./internal/cx";
+import { held } from "./internal/hold";
+import { createJelly, FLAT } from "./internal/jelly";
+import { useRefraction } from "./internal/refraction";
+import { createSpring, type Spring } from "./internal/spring";
+
+export interface SwitchProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "value" | "defaultValue" | "defaultChecked" | "onChange"> {
+  checked?: boolean;
+  defaultChecked?: boolean;
+  onCheckedChange?: (checked: boolean) => void;
+}
+
+// How far the thumb travels across the 63pt track, leaving 2pt each side of its 37.
+const TRAVEL = 22;
+// iOS keeps the lens up for the whole trip, however quick the tap.
+const LENS_MS = 300;
+const unit = (value: number) => Math.min(1, Math.max(0, value));
+
+export const Switch: ForwardRefExoticComponent<SwitchProps & RefAttributes<HTMLButtonElement>> = /* @__PURE__ */ forwardRef<
+  HTMLButtonElement,
+  SwitchProps
+>(function Switch(
+  { checked: checkedProp, defaultChecked = false, onCheckedChange, className, ...props },
+  forwardedRef,
+) {
+  const ref = useRef<HTMLButtonElement>(null);
+  const fillRef = useRef<HTMLSpanElement>(null);
+  const thumbRef = useRef<HTMLSpanElement>(null);
+  const faceRef = useRef<HTMLSpanElement>(null);
+  useRefraction(thumbRef, true);
+  const [checked, setChecked] = useControllable(checkedProp, defaultChecked, onCheckedChange);
+  const latest = useRef({ checked, setChecked });
+  const springs = useRef<{ position: Spring; color: Spring } | null>(null);
+  useImperativeHandle(forwardedRef, () => ref.current!);
+
+  useEffect(() => {
+    latest.current = { checked, setChecked };
+    springs.current?.position.set(checked ? 1 : 0);
+    springs.current?.color.set(checked ? 1 : 0);
+  }, [checked, setChecked]);
+
+  useEffect(() => {
+    const el = ref.current!;
+    const fill = fillRef.current!;
+    const thumb = thumbRef.current!;
+    const face = faceRef.current!;
+    let x = 0;
+    let scale = 0.627;
+    let squashed = FLAT;
+    const paint = () => {
+      // The thumb stretches along its way across, by how far it trails the place it's going.
+      thumb.style.transform = `translate(${x}px, -50%) scale(${scale * squashed.x}, ${scale * squashed.y})`;
+    };
+    const jelly = createJelly(
+      () => thumb.offsetWidth,
+      (shape) => {
+        squashed = shape;
+        paint();
+      },
+    );
+
+    const initial = latest.current.checked ? 1 : 0;
+    const position = createSpring(initial, 1000, 80, (value) => {
+      x = value * TRAVEL;
+      jelly.follow(x);
+      paint();
+    });
+    // The colour outlasts the thumb's trip.
+    const color = createSpring(initial, 300, 35, (value) => {
+      fill.style.opacity = String(unit(value));
+    });
+    const lift = createSpring(0, 2000, 80, (value) => {
+      scale = 0.627 + 0.373 * value;
+      face.style.opacity = String(1 - unit(value));
+      thumb.style.setProperty("--lg-lift", String(unit(value)));
+      paint();
+    });
+    springs.current = { position, color };
+    position.paint();
+    color.paint();
+    lift.paint();
+
+    let gesture: { id: number; x: number; y: number; from: number; moved: boolean; at: number; box: DOMRect } | null =
+      null;
+    let ignoreClick = false;
+
+    const sync = () => {
+      position.set(latest.current.checked ? 1 : 0);
+      color.set(latest.current.checked ? 1 : 0);
+    };
+
+    let linger = 0;
+    const lower = (from: number) => {
+      clearTimeout(linger);
+      linger = window.setTimeout(() => {
+        lift.tune(600, 49);
+        lift.set(0);
+      }, Math.max(0, LENS_MS - (performance.now() - from)));
+    };
+
+    const settle = (next?: boolean) => {
+      const old = gesture;
+      gesture = null;
+      lower(old?.at ?? 0);
+      if (old && el.hasPointerCapture(old.id)) el.releasePointerCapture(old.id);
+      if (next === undefined || next === latest.current.checked) return sync();
+      latest.current.setChecked(next);
+      requestAnimationFrame(sync);
+    };
+
+    const down = (event: PointerEvent) => {
+      if (!event.isPrimary || event.button !== 0 || el.disabled) return;
+      event.preventDefault();
+      ignoreClick = false;
+      gesture = {
+        id: event.pointerId,
+        x: event.clientX,
+        y: event.clientY,
+        from: latest.current.checked ? 1 : 0,
+        moved: false,
+        at: performance.now(),
+        box: el.getBoundingClientRect(),
+      };
+      el.setPointerCapture(event.pointerId);
+      clearTimeout(linger);
+      lift.tune(2000, 80);
+      lift.set(1);
+    };
+
+    const move = (event: PointerEvent) => {
+      if (event.pointerId !== gesture?.id) return;
+      const dx = event.clientX - gesture.x;
+      const dy = Math.abs(event.clientY - gesture.y);
+      // A quick vertical swipe is a scroll; once held, the switch keeps it.
+      if (!held(gesture.at, gesture.moved) && dy > 10 && dy > Math.abs(dx) + 4) {
+        ignoreClick = true;
+        return settle();
+      }
+      if (!gesture.moved && Math.abs(dx) < 4) return;
+      gesture.moved = true;
+      const value = gesture.from + dx / TRAVEL;
+      const overshoot = value < 0 ? value : value > 1 ? value - 1 : 0;
+      position.set(unit(value) + overshoot / 22);
+      color.set(value > 0.5 ? 1 : 0);
+    };
+
+    const up = (event: PointerEvent) => {
+      if (event.pointerId !== gesture?.id) return;
+      ignoreClick = true;
+      const { from, x, moved, box } = gesture;
+      const value = from + (event.clientX - x) / TRAVEL;
+      // A drag lands where it's let go; a tap only counts on the switch.
+      const near = event.clientY >= box.top - 24 && event.clientY <= box.bottom + 24;
+      settle(moved ? value > 0.5 : near ? !latest.current.checked : undefined);
+    };
+
+    const keep = (event: TouchEvent) => {
+      if (gesture && event.cancelable && held(gesture.at, gesture.moved)) event.preventDefault();
+    };
+
+    const cancel = () => {
+      if (!gesture) return;
+      ignoreClick = true;
+      settle();
+    };
+
+    const click = () => {
+      if (ignoreClick) ignoreClick = false;
+      else if (!el.disabled) latest.current.setChecked(!latest.current.checked);
+    };
+
+    el.addEventListener("pointerdown", down);
+    el.addEventListener("pointermove", move);
+    el.addEventListener("pointerup", up);
+    el.addEventListener("pointercancel", cancel);
+    el.addEventListener("lostpointercapture", cancel);
+    el.addEventListener("touchmove", keep, { passive: false });
+    el.addEventListener("click", click);
+    return () => {
+      springs.current = null;
+      clearTimeout(linger);
+      [position, color, lift, jelly].forEach((spring) => spring.stop());
+      el.removeEventListener("pointerdown", down);
+      el.removeEventListener("pointermove", move);
+      el.removeEventListener("pointerup", up);
+      el.removeEventListener("pointercancel", cancel);
+      el.removeEventListener("lostpointercapture", cancel);
+      el.removeEventListener("touchmove", keep);
+      el.removeEventListener("click", click);
+    };
+  }, []);
+
+  return (
+    <button
+      ref={ref}
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      className={cx("lg-switch", className)}
+      {...props}
+    >
+      <span ref={fillRef} className="lg-switch-fill" aria-hidden />
+      <span ref={thumbRef} className="lg-glass lg-switch-thumb" aria-hidden>
+        <span ref={faceRef} className="lg-thumb-face" />
+      </span>
+    </button>
+  );
+});
