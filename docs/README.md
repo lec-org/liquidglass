@@ -4,7 +4,7 @@
 
 ## 启动与构建
 
-在仓库根目录：
+在 Lec Platform 根目录：
 
 ```sh
 pnpm install

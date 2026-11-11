@@ -53,7 +53,7 @@ function Content({ path }: { path: string }) {
       </DocsBody>
       <a
         className="doc-source-link"
-        href={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/packages/liquidglass/docs/content/docs/${encodeURI(path)}`}
+        href={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/docs/content/docs/${encodeURI(path)}`}
         target="_blank"
         rel="noreferrer"
       >

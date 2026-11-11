@@ -6,7 +6,7 @@ export const docsContentRoute = "/llms.mdx/docs";
 
 export const gitConfig = {
   user: "lec-org",
-  repo: "lec-oj",
+  repo: "liquidglass",
   branch: "main",
 };
 
