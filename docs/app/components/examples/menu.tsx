@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu } from "@lec-org/liquidglass";
+import { Menu } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [sort, setSort] = useState("最近更新");

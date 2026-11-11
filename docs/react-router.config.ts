@@ -6,6 +6,7 @@ const getUrl = createGetUrl("/docs");
 
 export default {
   ssr: false,
+  basename: process.env.DOCS_BASE_PATH || "/",
   async prerender({ getStaticPaths }) {
     const paths: string[] = [];
     const excluded: string[] = [];

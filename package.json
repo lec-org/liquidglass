@@ -1,7 +1,6 @@
 {
-  "name": "@lec-org/liquidglass",
-  "version": "0.14.0",
-  "private": true,
+  "name": "@lec-space/liquidglass",
+  "version": "1.0.0",
   "type": "module",
   "license": "MIT",
   "sideEffects": [
@@ -57,9 +56,20 @@
         "require": "./dist/workspace.cjs"
       },
       "./styles.css": "./dist/styles.css"
-    }
+    },
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
     "@daypicker/react": "10.0.2"
+  },
+  "packageManager": "pnpm@10.34.4",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lec-org/liquidglass.git"
+  },
+  "homepage": "https://lec-org.github.io/liquidglass/",
+  "bugs": {
+    "url": "https://github.com/lec-org/liquidglass/issues"
   }
 }

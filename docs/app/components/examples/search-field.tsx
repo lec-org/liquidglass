@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SearchField } from "@lec-org/liquidglass";
+import { SearchField } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [query, setQuery] = useState("");

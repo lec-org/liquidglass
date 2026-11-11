@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TabBar } from "@lec-org/liquidglass";
+import { TabBar } from "@lec-space/liquidglass";
 import { House, Compass, Heart } from "lucide-react";
 
 export default function Example() {

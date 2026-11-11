@@ -1,4 +1,4 @@
-import { Descriptions, Tag } from "@lec-org/liquidglass";
+import { Descriptions, Tag } from "@lec-space/liquidglass";
 export default function Example() {
   return (
     <Descriptions

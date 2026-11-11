@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { Button, Select } from "@lec-org/liquidglass";
+import { Button, Select } from "@lec-space/liquidglass";
 
 const languages = [
   { value: "cpp", label: "C++ 20" },

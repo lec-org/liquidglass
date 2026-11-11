@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Input } from "@lec-org/liquidglass";
-import { ResizableWorkspace } from "@lec-org/liquidglass/workspace";
+import { Input } from "@lec-space/liquidglass";
+import { ResizableWorkspace } from "@lec-space/liquidglass/workspace";
 export default function Example() {
   const [layout, setLayout] = useState("");
   return (

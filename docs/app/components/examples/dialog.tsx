@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Button, Dialog, FormField, Input } from "@lec-org/liquidglass";
+import { Button, Dialog, FormField, Input } from "@lec-space/liquidglass";
 
 export default function Example() {
   const trigger = useRef<HTMLButtonElement>(null);

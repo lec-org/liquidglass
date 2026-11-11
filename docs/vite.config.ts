@@ -5,6 +5,7 @@ import { fumadocsMdx } from "fumadocs-mdx/vite";
 import { remarkAutoTypeTable } from "fumadocs-typescript";
 
 export default defineConfig({
+  base: process.env.DOCS_BASE_PATH || "/",
   // 预览服务和回归服务同时运行时，各自维护依赖缓存，避免首屏脚本出现过期的优化结果。
   cacheDir:
     process.env.LIQUIDGLASS_DOCS_TEST_CACHE === "1"
@@ -27,9 +28,9 @@ export default defineConfig({
     include: [
       "react-dom",
       "react-dom/client",
-      "@lec-org/liquidglass > @daypicker/react",
-      "@lec-org/liquidglass > @daypicker/react/locale",
-      "@lec-org/liquidglass > react-resizable-panels",
+      "@lec-space/liquidglass > @daypicker/react",
+      "@lec-space/liquidglass > @daypicker/react/locale",
+      "@lec-space/liquidglass > react-resizable-panels",
     ],
   },
   server: { strictPort: true, watch: { ignored: ["**/build/**"] } },

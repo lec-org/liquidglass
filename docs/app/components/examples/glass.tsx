@@ -1,4 +1,4 @@
-import { Glass } from "@lec-org/liquidglass";
+import { Glass } from "@lec-space/liquidglass";
 
 export default function Example() {
   return (

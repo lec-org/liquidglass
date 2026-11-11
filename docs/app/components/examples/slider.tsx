@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Slider } from "@lec-org/liquidglass";
+import { Slider } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [volume, setVolume] = useState(64);

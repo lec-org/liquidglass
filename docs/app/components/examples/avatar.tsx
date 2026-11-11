@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Avatar, Badge, Button } from "@lec-org/liquidglass";
+import { Avatar, Badge, Button } from "@lec-space/liquidglass";
 
 // 内嵌 SVG 保证离线也能展示图片头像，不依赖外部图片服务。
 const picture = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="#b6d6c7"/><circle cx="40" cy="31" r="14" fill="#416f60"/><ellipse cx="40" cy="77" rx="29" ry="25" fill="#416f60"/></svg>')}`;

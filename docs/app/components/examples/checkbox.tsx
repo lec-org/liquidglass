@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { Checkbox } from "@lec-org/liquidglass";
+import { Checkbox } from "@lec-space/liquidglass";
 
 export default function Example() {
   const id = useId();

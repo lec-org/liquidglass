@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, DateRangePicker } from "@lec-org/liquidglass";
+import { Button, DateRangePicker } from "@lec-space/liquidglass";
 export default function Example() {
   const [result, setResult] = useState("选择日期后提交");
   return (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, NavigationBar } from "@lec-org/liquidglass";
+import { Button, NavigationBar } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [title, setTitle] = useState("我的收藏");

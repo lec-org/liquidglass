@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Switch } from "@lec-org/liquidglass";
+import { Switch } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [checked, setChecked] = useState(true);

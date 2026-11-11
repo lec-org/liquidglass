@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ActivityCalendar } from "@lec-org/liquidglass";
+import { ActivityCalendar } from "@lec-space/liquidglass";
 import styles from "./activity-calendar.module.css";
 export default function Example() {
   const [month, setMonth] = useState("2026-11");

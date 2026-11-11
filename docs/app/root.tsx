@@ -14,7 +14,7 @@ import NotFound from "./routes/not-found";
 import { translations } from "./lib/translations";
 
 export const links: Route.LinksFunction = () => [
-  { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+  { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.svg`, type: "image/svg+xml" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {

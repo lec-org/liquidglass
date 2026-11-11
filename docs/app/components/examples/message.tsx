@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Message } from "@lec-org/liquidglass";
+import { Message } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [retry, setRetry] = useState(false);

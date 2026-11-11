@@ -13,7 +13,7 @@ import {
   Sun,
   Waves,
 } from "lucide-react";
-import { Button, Glass, Progress, Slider, Switch } from "@lec-org/liquidglass";
+import { Button, Glass, Progress, Slider, Switch } from "@lec-space/liquidglass";
 import { components } from "@/lib/components";
 import { baseOptions } from "@/lib/layout.shared";
 

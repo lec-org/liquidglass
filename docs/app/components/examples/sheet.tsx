@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Sheet, Switch } from "@lec-org/liquidglass";
+import { Button, Sheet, Switch } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [open, setOpen] = useState(false);

@@ -1,4 +1,4 @@
-import { Button, GlassGroup } from "@lec-org/liquidglass";
+import { Button, GlassGroup } from "@lec-space/liquidglass";
 import { Heart, Plus, Share2 } from "lucide-react";
 
 export default function Example() {

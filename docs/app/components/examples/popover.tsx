@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Checkbox, Popover } from "@lec-org/liquidglass";
+import { Button, Checkbox, Popover } from "@lec-space/liquidglass";
 import { SlidersHorizontal } from "lucide-react";
 
 export default function Example() {

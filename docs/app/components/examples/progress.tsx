@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Progress, Spinner } from "@lec-org/liquidglass";
+import { Button, Progress, Spinner } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [value, setValue] = useState(0.4);

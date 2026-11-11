@@ -1,4 +1,4 @@
-import { ImportWizard, Table } from "@lec-org/liquidglass";
+import { ImportWizard, Table } from "@lec-space/liquidglass";
 
 interface Preview {
   names: string[];

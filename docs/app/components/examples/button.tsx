@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "@lec-org/liquidglass";
+import { Button } from "@lec-space/liquidglass";
 import { ArrowUpRight, Plus } from "lucide-react";
 
 export default function Example() {

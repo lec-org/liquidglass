@@ -5,7 +5,7 @@ import {
   enUS,
   Pagination,
   Table,
-} from "@lec-org/liquidglass";
+} from "@lec-space/liquidglass";
 
 export default function Example() {
   const [english, setEnglish] = useState(false);

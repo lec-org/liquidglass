@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Tag } from "@lec-org/liquidglass";
+import { Button, Tag } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [tags, setTags] = useState(["数组", "哈希表", "双指针"]);

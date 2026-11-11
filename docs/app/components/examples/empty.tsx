@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Card, Empty, Tag } from "@lec-org/liquidglass";
+import { Button, Card, Empty, Tag } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [added, setAdded] = useState(false);

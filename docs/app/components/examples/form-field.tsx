@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, FormField, Input } from "@lec-org/liquidglass";
+import { Button, FormField, Input } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [error, setError] = useState("");

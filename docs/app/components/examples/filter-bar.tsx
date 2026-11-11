@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, FilterBar, Input, Select } from "@lec-org/liquidglass";
+import { Button, FilterBar, Input, Select } from "@lec-space/liquidglass";
 export default function Example() {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("");

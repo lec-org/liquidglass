@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, ConfigProvider, Input, Tabs } from "@lec-org/liquidglass";
+import { Button, ConfigProvider, Input, Tabs } from "@lec-space/liquidglass";
 export default function Example() {
   const [rtl, setRtl] = useState(false);
   return (

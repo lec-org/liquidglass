@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PageControl } from "@lec-org/liquidglass";
+import { PageControl } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [page, setPage] = useState(0);

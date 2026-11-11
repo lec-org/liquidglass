@@ -5,7 +5,7 @@ import {
   Slider,
   Switch,
   type ButtonProps,
-} from "@lec-org/liquidglass";
+} from "@lec-space/liquidglass";
 import { ArrowUpRight } from "lucide-react";
 import { backgrounds, PreviewCanvas, SourceCode } from "./preview";
 
@@ -18,7 +18,7 @@ export function Playground() {
   const [tint, setTint] = useState("#087f6f");
   const [transparency, setTransparency] = useState(0.5);
   const [count, setCount] = useState(0);
-  const code = `import { Button, Glass } from '@lec-org/liquidglass';\nimport type { CSSProperties } from 'react';\n\nexport default function Example() {\n  return (\n    <div data-theme="${dark ? "dark" : "light"}"\n      style={{ '--lg-transparency': ${transparency} } as CSSProperties}>\n      <Glass style={{ padding: 28, borderRadius: 28 }}>\n        <h3>让想法，浮出水面。</h3>\n        <Button variant="${variant}" size="${size}" tint="${tint}">\n          开始创作\n        </Button>\n      </Glass>\n    </div>\n  );\n}`;
+  const code = `import { Button, Glass } from '@lec-space/liquidglass';\nimport type { CSSProperties } from 'react';\n\nexport default function Example() {\n  return (\n    <div data-theme="${dark ? "dark" : "light"}"\n      style={{ '--lg-transparency': ${transparency} } as CSSProperties}>\n      <Glass style={{ padding: 28, borderRadius: 28 }}>\n        <h3>让想法，浮出水面。</h3>\n        <Button variant="${variant}" size="${size}" tint="${tint}">\n          开始创作\n        </Button>\n      </Glass>\n    </div>\n  );\n}`;
   return (
     <div className="playground not-prose">
       <div className="playground-layout">

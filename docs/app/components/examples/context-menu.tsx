@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ContextMenu, Glass } from "@lec-org/liquidglass";
+import { ContextMenu, Glass } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [action, setAction] = useState("右键或长按这张卡片");

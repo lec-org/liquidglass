@@ -14,7 +14,7 @@ import {
   Tag,
   Typography,
   type TableColumn,
-} from "@lec-org/liquidglass";
+} from "@lec-space/liquidglass";
 import { Search, Settings2 } from "lucide-react";
 import styles from "./visual-system.module.css";
 

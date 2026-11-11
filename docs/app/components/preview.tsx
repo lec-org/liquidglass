@@ -175,7 +175,7 @@ export function ComponentPreview({
       <div className="preview-caption">
         <span className="live-dot" />
         {interactive ? "真实组件 · 点击、拖动，试试看" : "正在准备交互…"}
-        <span className="preview-caption-right">@lec-org/liquidglass</span>
+        <span className="preview-caption-right">@lec-space/liquidglass</span>
       </div>
     </section>
   );

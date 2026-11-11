@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Stepper } from "@lec-org/liquidglass";
+import { Stepper } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [count, setCount] = useState(2);

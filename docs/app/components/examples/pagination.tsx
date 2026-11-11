@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Pagination } from "@lec-org/liquidglass";
+import { Pagination } from "@lec-space/liquidglass";
 export default function Example() {
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10);

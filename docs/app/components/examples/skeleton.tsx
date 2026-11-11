@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Avatar, Button, Card, Skeleton, Tag } from "@lec-org/liquidglass";
+import { Avatar, Button, Card, Skeleton, Tag } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [loading, setLoading] = useState(true);

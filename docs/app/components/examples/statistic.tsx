@@ -1,4 +1,4 @@
-import { Statistic } from "@lec-org/liquidglass";
+import { Statistic } from "@lec-space/liquidglass";
 export default function Example() {
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: 40 }}>

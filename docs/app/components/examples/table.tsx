@@ -1,4 +1,4 @@
-import { Table, Tag } from "@lec-org/liquidglass";
+import { Table, Tag } from "@lec-space/liquidglass";
 const rows = [
   { id: "1", name: "两数之和", tag: "数组" },
   { id: "2", name: "有效括号", tag: "栈" },

@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Button, Descriptions, Drawer, Tag } from "@lec-org/liquidglass";
+import { Button, Descriptions, Drawer, Tag } from "@lec-space/liquidglass";
 export default function Example() {
   const trigger = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);

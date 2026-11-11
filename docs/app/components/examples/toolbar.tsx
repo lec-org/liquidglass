@@ -1,4 +1,4 @@
-import { Button, Toolbar, ToolbarGroup } from "@lec-org/liquidglass";
+import { Button, Toolbar, ToolbarGroup } from "@lec-space/liquidglass";
 import { ArrowLeft, Plus, Share2 } from "lucide-react";
 
 export default function Example() {

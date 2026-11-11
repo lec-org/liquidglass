@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { Button, Radio } from "@lec-org/liquidglass";
+import { Button, Radio } from "@lec-space/liquidglass";
 
 export default function Example() {
   const name = useId();

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, MultiSelect } from "@lec-org/liquidglass";
+import { Button, MultiSelect } from "@lec-space/liquidglass";
 export default function Example() {
   const [result, setResult] = useState("最多选择 3 项");
   return (

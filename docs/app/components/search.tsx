@@ -16,6 +16,7 @@ import { useI18n } from "fumadocs-ui/contexts/i18n";
 export default function DefaultSearchDialog(props: SharedProps) {
   const { locale } = useI18n();
   const search = useStaticSearch({
+    from: `${import.meta.env.BASE_URL}api/search.json`,
     locale,
   });
 

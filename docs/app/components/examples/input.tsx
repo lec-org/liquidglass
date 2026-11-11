@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input } from "@lec-org/liquidglass";
+import { Input } from "@lec-space/liquidglass";
 import { UserRound } from "lucide-react";
 
 export default function Example() {

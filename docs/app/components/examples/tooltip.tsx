@@ -1,4 +1,4 @@
-import { Button, Tooltip } from "@lec-org/liquidglass";
+import { Button, Tooltip } from "@lec-space/liquidglass";
 import { Bookmark, Download, Info } from "lucide-react";
 
 export default function Example() {

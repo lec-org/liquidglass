@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Avatar, Badge, Button } from "@lec-org/liquidglass";
+import { Avatar, Badge, Button } from "@lec-space/liquidglass";
 import { Bell, Minus, Plus } from "lucide-react";
 
 export default function Example() {

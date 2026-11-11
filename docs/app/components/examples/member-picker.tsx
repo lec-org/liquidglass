@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MemberPicker } from "@lec-org/liquidglass";
+import { MemberPicker } from "@lec-space/liquidglass";
 export default function Example() {
   const [selected, setSelected] = useState<string[]>([]);
   return (

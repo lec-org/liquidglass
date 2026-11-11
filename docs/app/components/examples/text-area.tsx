@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { Button, TextArea } from "@lec-org/liquidglass";
+import { Button, TextArea } from "@lec-space/liquidglass";
 
 export default function Example() {
   const id = useId();

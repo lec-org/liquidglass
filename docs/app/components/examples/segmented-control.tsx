@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SegmentedControl } from "@lec-org/liquidglass";
+import { SegmentedControl } from "@lec-space/liquidglass";
 
 export default function Example() {
   const [view, setView] = useState("week");

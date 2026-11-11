@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Upload } from "@lec-org/liquidglass";
+import { Upload } from "@lec-space/liquidglass";
 export default function Example() {
   const [files, setFiles] = useState<readonly File[]>([]);
   return (

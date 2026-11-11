@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Avatar, Button, Card, Tag } from "@lec-org/liquidglass";
+import { Avatar, Button, Card, Tag } from "@lec-space/liquidglass";
 import { ArrowUpRight } from "lucide-react";
 
 export default function Example() {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Tree } from "@lec-org/liquidglass";
+import { Tree } from "@lec-space/liquidglass";
 export default function Example() {
   const [selected, setSelected] = useState("");
   return (

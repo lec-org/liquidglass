@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, ToastProvider, useToast } from "@lec-org/liquidglass";
+import { Button, ToastProvider, useToast } from "@lec-space/liquidglass";
 
 function Actions() {
   const { toast, dismissAll } = useToast();

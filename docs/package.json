@@ -1,5 +1,5 @@
 {
-  "name": "@lec-org/liquidglass-docs",
+  "name": "@lec-space/liquidglass-docs",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,7 +10,7 @@
     "test": "playwright test"
   },
   "dependencies": {
-    "@lec-org/liquidglass": "workspace:*",
+    "@lec-space/liquidglass": "workspace:*",
     "@react-router/node": "8.5.1",
     "fumadocs-core": "16.18.4",
     "fumadocs-mdx": "15.5.3",

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, DataTable, Tag } from "@lec-org/liquidglass";
+import { Button, DataTable, Tag } from "@lec-space/liquidglass";
 const rows = [
   { id: "lin", name: "林同学", hours: 12 },
   { id: "chen", name: "陈同学", hours: 8 },

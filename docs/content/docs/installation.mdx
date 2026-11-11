@@ -1,30 +1,36 @@
 ---
 title: 快速开始
-description: 在现有 workspace 中接入 Liquid Glass，并渲染第一个组件。
+description: 从 npm 安装 Liquid Glass，或在平台 workspace 中使用源码。
 ---
 
 ## 环境
 
-组件声明支持 React 18 及以上。当前站点使用 React 19 与 Vite；构建工具需要支持 `styles.css?inline` 的源码导入方式。
+组件声明支持 React 18 及以上。当前站点使用 React 19 与 Vite。npm 构建产物提供 ESM、CommonJS 与类型声明，无需消费方编译 TSX 或处理 Vite 专有导入。
 
-## 添加 workspace 依赖
+## 从 npm 安装
 
-当前包是仓库内的私有 workspace 包，尚未发布到公共 npm。在同一 workspace 的应用 `package.json` 中添加：
+```sh
+npm install @lec-space/liquidglass@1.0.0
+```
+
+## 平台 workspace
+
+Lec Platform 内部开发可以直接使用源码，在应用 `package.json` 中添加：
 
 ```json
 {
   "dependencies": {
-    "@lec-org/liquidglass": "workspace:*"
+    "@lec-space/liquidglass": "workspace:*"
   }
 }
 ```
 
-然后在仓库根目录运行 `pnpm install`。其他仓库不能直接通过公共 npm 安装此私有包；独立分发需要先配置构建产物、版本和发布流程。
+然后在 Lec Platform 根目录运行 `pnpm install`，保留源码热更新。
 
 ## 使用组件
 
 ```tsx
-import { Button, Glass } from "@lec-org/liquidglass";
+import { Button, Glass } from "@lec-space/liquidglass";
 
 export default function Welcome() {
   return (
@@ -62,17 +68,17 @@ export default function Welcome() {
 
 ## 跨仓安装构建产物
 
-在 LecOJ 根目录运行以下命令，生成可安装的 tarball：
+在 Lec Platform 或组件子仓根目录运行以下命令，生成可安装的 tarball：
 
 ```sh
-pnpm --filter @lec-org/liquidglass pack --out /tmp/liquidglass.tgz
+pnpm --filter @lec-space/liquidglass pack --out /tmp/liquidglass.tgz
 ```
 
 在其他仓库安装生成的文件即可。产物同时提供 ESM、CommonJS、类型声明和 CSS，应用无需处理组件库源码中的 Vite 专有导入。
 
 ```tsx
-import { ConfigProvider, Dialog, DataTable } from "@lec-org/liquidglass";
-import { ResizableWorkspace } from "@lec-org/liquidglass/workspace";
+import { ConfigProvider, Dialog, DataTable } from "@lec-space/liquidglass";
+import { ResizableWorkspace } from "@lec-space/liquidglass/workspace";
 ```
 
 分栏入口是可选功能，需要项目安装 `react-resizable-panels@^4.21.0`。基础组件不会加载面板引擎。

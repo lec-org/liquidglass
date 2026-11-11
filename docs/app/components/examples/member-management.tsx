@@ -11,7 +11,7 @@ import {
   Statistic,
   Tag,
   type TableSort,
-} from "@lec-org/liquidglass";
+} from "@lec-space/liquidglass";
 
 interface Member {
   id: string;

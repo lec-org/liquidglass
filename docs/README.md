@@ -1,6 +1,6 @@
 # Liquid Glass 组件站
 
-基于 Fumadocs、React Router 和 Vite。直接消费上级目录的 `@lec-org/liquidglass` 源码，不复制组件实现。
+基于 Fumadocs、React Router 和 Vite。直接消费上级目录的 `@lec-space/liquidglass` 源码，不复制组件实现。
 
 ## 启动与构建
 
@@ -10,16 +10,16 @@
 pnpm install
 pnpm docs:dev        # http://127.0.0.1:5174
 pnpm docs:build
-pnpm --filter @lec-org/liquidglass-docs typecheck
+pnpm --filter @lec-space/liquidglass-docs typecheck
 ```
 
 构建输出在 `packages/liquidglass/docs/build/client`。HTML、路由数据、搜索索引与 Markdown 内容均在构建时生成，无需数据库和运行时 Node 服务。
 
 ```sh
-pnpm --filter @lec-org/liquidglass-docs start
+pnpm --filter @lec-space/liquidglass-docs start
 ```
 
-部署时先提供真实静态文件与目录中的 `index.html`；未知页面使用构建时生成的 `404.html`（内容为 React Router 的 SPA fallback）。不要用覆盖所有无扩展名路径的 rewrite，否则 `/api/search` 会被误返回为 HTML。`serve.json` 提供本地静态预览规则和搜索索引的 JSON 类型。站点默认部署在域名根路径。
+部署时先提供真实静态文件与目录中的 `index.html`；未知页面使用构建时生成的 `404.html`（内容为 React Router 的 SPA fallback）。不要用覆盖所有无扩展名路径的 rewrite，否则 `/api/search.json` 会被误返回为 HTML。`serve.json` 提供本地静态预览规则和搜索索引的 JSON 类型。本地默认使用域名根路径；GitHub Pages 构建设置 `DOCS_BASE_PATH=/liquidglass/`，由 Vite 资源路径和 React Router basename 共同处理子路径。
 
 ## 内容组织
 
@@ -35,12 +35,12 @@ API 表格通过 Fumadocs TypeScript 插件读取 `../src` 的实际属性类型
 
 ## 说明
 
-本站直接消费 workspace 源码；组件包仍为私有包，尚未发布到 npm registry。跨仓可以通过 `pnpm pack` 安装包含 ESM、CommonJS 和类型声明的构建产物，具体命令见上级 README。上游来源与 MIT 许可见上级 README 和 LICENSE。
+本站直接消费 workspace 源码；组件包以 `@lec-space/liquidglass@1.0.0` 发布到 npm。跨仓可以通过 `pnpm pack` 安装包含 ESM、CommonJS 和类型声明的构建产物，具体命令见上级 README。上游来源与 MIT 许可见上级 README 和 LICENSE。
 
 ## 浏览器回归检查
 
 ```sh
-pnpm --filter @lec-org/liquidglass-docs exec playwright install chromium
+pnpm --filter @lec-space/liquidglass-docs exec playwright install chromium
 pnpm docs:test
 # 已安装 Google Chrome 时可复用本机浏览器：
 PLAYWRIGHT_CHANNEL=chrome pnpm docs:test
@@ -53,6 +53,6 @@ PLAYWRIGHT_CHANNEL=chrome pnpm docs:test
 Safari 同类引擎可单独验证表单、列表、浮层及场景组合：
 
 ```sh
-pnpm --filter @lec-org/liquidglass-docs exec playwright install webkit
-pnpm --filter @lec-org/liquidglass-docs exec playwright test tests/foundation.spec.ts tests/management.spec.ts tests/blocks.spec.ts tests/calendar-pagination.spec.ts tests/range-navigation.spec.ts --grep-invert '截图' --config playwright.webkit.config.ts
+pnpm --filter @lec-space/liquidglass-docs exec playwright install webkit
+pnpm --filter @lec-space/liquidglass-docs exec playwright test tests/foundation.spec.ts tests/management.spec.ts tests/blocks.spec.ts tests/calendar-pagination.spec.ts tests/range-navigation.spec.ts --grep-invert '截图' --config playwright.webkit.config.ts
 ```

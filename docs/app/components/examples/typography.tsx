@@ -1,4 +1,4 @@
-import { Typography } from "@lec-org/liquidglass";
+import { Typography } from "@lec-space/liquidglass";
 
 export default function Example() {
   return (
@@ -12,7 +12,7 @@ export default function Example() {
         所有改动已保存
       </Typography>
       <Typography as="code" size="small">
-        npm install @lec-org/liquidglass
+        npm install @lec-space/liquidglass
       </Typography>
     </div>
   );
