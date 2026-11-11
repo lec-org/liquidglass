@@ -1,6 +1,7 @@
 import {
   lazy,
   Suspense,
+  useEffect,
   useState,
   type ComponentType,
   type ReactNode,
@@ -102,7 +103,13 @@ export function PreviewCanvas({
   );
 }
 
-export function ComponentPreview({ name }: { name: ComponentName }) {
+export function ComponentPreview({
+  name,
+}: {
+  name: ComponentName | "member-management" | "visual-system";
+}) {
+  const [interactive, setInteractive] = useState(false);
+  useEffect(() => setInteractive(true), []);
   const [background, setBackground] = useState("aurora");
   const [dark, setDark] = useState(false);
   const [showCode, setShowCode] = useState(false);
@@ -113,6 +120,9 @@ export function ComponentPreview({ name }: { name: ComponentName }) {
     <section
       className="component-preview not-prose"
       aria-label={`${name} 交互示例`}
+      data-interactive={interactive}
+      aria-busy={!interactive}
+      inert={!interactive}
     >
       <div className="preview-toolbar">
         <div className="preview-view-switch">
@@ -164,7 +174,7 @@ export function ComponentPreview({ name }: { name: ComponentName }) {
       {showCode && <SourceCode code={code} />}
       <div className="preview-caption">
         <span className="live-dot" />
-        真实组件 · 点击、拖动，试试看
+        {interactive ? "真实组件 · 点击、拖动，试试看" : "正在准备交互…"}
         <span className="preview-caption-right">@lec-org/liquidglass</span>
       </div>
     </section>

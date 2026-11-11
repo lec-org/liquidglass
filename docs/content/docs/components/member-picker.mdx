@@ -1,0 +1,18 @@
+---
+title: MemberPicker 成员选择
+description: 搜索并选择成员资料。
+---
+
+<ComponentPreview name="member-picker" />
+
+## 使用说明
+
+以稳定成员 ID 作为值，名称、头像和分组用于展示。上层负责搜索接口、组织范围与权限校验，组件不依赖 Lec SSO。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/member-picker.tsx"
+  type="Pick<MemberPickerProps, 'members' | 'value' | 'onValueChange' | 'onSearchChange' | 'loading' | 'maxSelected'>"
+/>

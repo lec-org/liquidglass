@@ -9,10 +9,14 @@ import {
 } from "react";
 
 import { useControllable } from "./internal/controllable";
+import { useConfig } from "./config-provider";
 import { cx } from "./internal/cx";
 import { useRefraction } from "./internal/refraction";
 
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "defaultValue" | "onChange"> {
+export interface InputProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "value" | "defaultValue" | "onChange"
+> {
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
@@ -22,13 +26,29 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   variant?: "glass" | "fill";
 }
 
-export const Input: ForwardRefExoticComponent<InputProps & RefAttributes<HTMLInputElement>> = /* @__PURE__ */ forwardRef<
-  HTMLInputElement,
-  InputProps
->(function Input({ value: valueProp, defaultValue = "", onValueChange, icon, variant = "glass", className, style, ...props }, forwardedRef) {
+export const Input: ForwardRefExoticComponent<
+  InputProps & RefAttributes<HTMLInputElement>
+> = /* @__PURE__ */ forwardRef<HTMLInputElement, InputProps>(function Input(
+  {
+    value: valueProp,
+    defaultValue = "",
+    onValueChange,
+    icon,
+    variant = "glass",
+    className,
+    style,
+    ...props
+  },
+  forwardedRef,
+) {
+  const { locale } = useConfig();
   const rootRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [value, setValue] = useControllable(valueProp, defaultValue, onValueChange);
+  const [value, setValue] = useControllable(
+    valueProp,
+    defaultValue,
+    onValueChange,
+  );
   useImperativeHandle(forwardedRef, () => inputRef.current!);
   useRefraction(rootRef);
 
@@ -43,19 +63,31 @@ export const Input: ForwardRefExoticComponent<InputProps & RefAttributes<HTMLInp
       }}
     >
       {icon == null ? null : <span className="lg-input-icon">{icon}</span>}
-      <input ref={inputRef} value={value} onChange={(event) => setValue(event.currentTarget.value)} {...props} />
+      <input
+        ref={inputRef}
+        value={value}
+        onChange={(event) => setValue(event.currentTarget.value)}
+        {...props}
+      />
       {props.type === "search" && value && !props.disabled ? (
         <button
           type="button"
           className="lg-input-clear"
-          aria-label="Clear"
+          aria-label={locale.clear}
           onPointerDown={(event) => event.preventDefault()}
           onClick={() => {
             setValue("");
             inputRef.current?.focus();
           }}
         >
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" aria-hidden>
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.5}
+            strokeLinecap="round"
+            aria-hidden
+          >
             <path d="m4.5 4.5 7 7m0-7-7 7" />
           </svg>
         </button>

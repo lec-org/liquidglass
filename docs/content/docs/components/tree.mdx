@@ -1,0 +1,18 @@
+---
+title: Tree 树形导航
+description: 浏览层级资源并选择节点。
+---
+
+<ComponentPreview name="tree" />
+
+## 使用说明
+
+上下键移动，右键展开或进入子项，左键收起或返回父项，Enter/空格选择。禁用节点仍能被读屏识别。节点 key 在整棵树中保持唯一。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/tree.tsx"
+  type="Pick<TreeProps, 'nodes' | 'selectedKey' | 'onSelect' | 'expandedKeys' | 'defaultExpandedKeys' | 'onExpandedChange'>"
+/>

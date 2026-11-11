@@ -1,0 +1,24 @@
+.example {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  max-width: 360px;
+  min-width: 0;
+}
+.detail {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-inline: 4px;
+  font-size: 13px;
+  color: var(--lg-secondary);
+  line-height: 1.5;
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--lg-success-ink);
+}

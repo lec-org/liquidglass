@@ -1,0 +1,20 @@
+---
+title: ActivityCalendar 活动日历
+description: 通过日期和强度展示练习或考勤活动。
+---
+
+<ComponentPreview name="activity-calendar" />
+
+## 使用说明
+
+month 使用 YYYY-MM，date 使用 YYYY-MM-DD。每天传入一条已聚合记录。组件不推断时区和统计口径。方向键移动日期，Home/End 定位当月首尾，按钮用于切换月份。
+
+日期按固定七列排列，底色和圆点表达活动强度，实色选中状态与「今天」标记独立。底部显示活跃天数和强度图例。`today` 由业务按所用时区传入，示例固定为 2026-11-11，以便截图回归。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/activity-calendar.tsx"
+  type="Pick<ActivityCalendarProps, 'month' | 'days' | 'selectedDate' | 'today' | 'onDateSelect' | 'onMonthChange'>"
+/>

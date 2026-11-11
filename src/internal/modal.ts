@@ -1,4 +1,12 @@
-import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type RefObject,
+} from "react";
+
+const useLayout = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 export type ModalPhase = "closed" | "open" | "leaving";
 
@@ -10,20 +18,28 @@ export function useModal(
   ref: RefObject<HTMLDialogElement | null>,
   open: boolean,
   requestClose: () => void,
+  returnFocusRef?: RefObject<HTMLElement | null>,
 ): { phase: ModalPhase; finished: () => void } {
   const [phase, setPhase] = useState<ModalPhase>(open ? "open" : "closed");
   const close = useRef(requestClose);
+  const previousFocus = useRef<HTMLElement | null>(null);
   useEffect(() => {
     close.current = requestClose;
   });
 
-  useLayoutEffect(() => {
-    setPhase((now) => (open ? "open" : now === "closed" ? "closed" : "leaving"));
+  useLayout(() => {
+    setPhase((now) =>
+      open ? "open" : now === "closed" ? "closed" : "leaving",
+    );
   }, [open]);
 
-  useLayoutEffect(() => {
+  useLayout(() => {
     const dialog = ref.current;
     if (!dialog || phase !== "open" || dialog.open) return;
+    previousFocus.current =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
     if (typeof dialog.showModal === "function") dialog.showModal();
     else dialog.setAttribute("open", "");
     // The browser would focus the first button and may ring it, which iOS never
@@ -46,8 +62,20 @@ export function useModal(
 
   const finished = () => {
     const dialog = ref.current;
+    // Safari 鼠标点击按钮不一定改变 activeElement，显式引用可保留真实的触发入口。
+    const target = returnFocusRef?.current ?? previousFocus.current;
+    const shouldRestore =
+      dialog?.contains(document.activeElement) ||
+      document.activeElement === document.body;
     if (typeof dialog?.close === "function" && dialog.open) dialog.close();
     else dialog?.removeAttribute("open");
+    if (
+      shouldRestore &&
+      target?.isConnected &&
+      !target.matches(':disabled, [aria-disabled="true"]')
+    ) {
+      target.focus({ preventScroll: true });
+    }
     setPhase("closed");
   };
 
@@ -55,4 +83,5 @@ export function useModal(
 }
 
 export const reducedMotion = (): boolean =>
-  typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  typeof matchMedia === "function" &&
+  matchMedia("(prefers-reduced-motion: reduce)").matches;

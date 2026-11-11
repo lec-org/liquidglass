@@ -1,0 +1,20 @@
+---
+title: DateRangePicker 日期范围
+description: 用统一玻璃触发框和范围日历选择起止日期。
+---
+
+<ComponentPreview name="date-range-picker" />
+
+## 使用说明
+
+值为 YYYY-MM-DD 日期字符串，不经过隐式时区转换。选择范围后点击「应用范围」提交；取消或 Escape 会丢弃草稿，保留已应用的值。表单字段保留原生校验、提交和重置，受控值的重置由上层维护。
+
+参考 [shadcn/ui Date Picker](https://ui.shadcn.com/docs/components/date-picker) 的组合方式，日期与键盘逻辑复用 [React DayPicker](https://daypicker.dev)，触发框、导航和浮层使用本组件库的玻璃样式。桌面显示双月，640px 及以下显示单月。`min` / `max` 禁用范围外的日期；示例允许 2026-11-01 至 2026-12-20，固定 `today` 以保证截图稳定。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/date-range-picker.tsx"
+  type="Pick<DateRangePickerProps, 'value' | 'defaultValue' | 'onValueChange' | 'names' | 'min' | 'max' | 'today' | 'required' | 'disabled'>"
+/>

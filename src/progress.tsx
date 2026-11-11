@@ -6,6 +6,7 @@ import {
   type RefAttributes,
 } from "react";
 
+import { useConfig } from "./config-provider";
 import { cx } from "./internal/cx";
 
 export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
@@ -14,10 +15,12 @@ export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /** A thin bar that fills as work goes on. */
-export const Progress: ForwardRefExoticComponent<ProgressProps & RefAttributes<HTMLDivElement>> = /* @__PURE__ */ forwardRef<
-  HTMLDivElement,
-  ProgressProps
->(function Progress({ value, className, style, ...props }, ref) {
+export const Progress: ForwardRefExoticComponent<
+  ProgressProps & RefAttributes<HTMLDivElement>
+> = /* @__PURE__ */ forwardRef<HTMLDivElement, ProgressProps>(function Progress(
+  { value, className, style, ...props },
+  ref,
+) {
   const amount = Math.min(1, Math.max(0, value));
   return (
     <div
@@ -40,12 +43,21 @@ export type SpinnerProps = HTMLAttributes<HTMLSpanElement>;
 const BLADES = [0, 1, 2, 3, 4, 5, 6, 7];
 
 /** The iOS activity indicator: eight blades that fade round in turn. */
-export const Spinner: ForwardRefExoticComponent<SpinnerProps & RefAttributes<HTMLSpanElement>> = /* @__PURE__ */ forwardRef<
-  HTMLSpanElement,
-  SpinnerProps
->(function Spinner({ className, ...props }, ref) {
+export const Spinner: ForwardRefExoticComponent<
+  SpinnerProps & RefAttributes<HTMLSpanElement>
+> = /* @__PURE__ */ forwardRef<HTMLSpanElement, SpinnerProps>(function Spinner(
+  { className, ...props },
+  ref,
+) {
+  const { locale } = useConfig();
   return (
-    <span ref={ref} role="status" aria-label="Loading" className={cx("lg-spinner", className)} {...props}>
+    <span
+      ref={ref}
+      role="status"
+      aria-label={locale.loading}
+      className={cx("lg-spinner", className)}
+      {...props}
+    >
       {BLADES.map((blade) => (
         <i key={blade} style={{ "--lg-blade": blade } as CSSProperties} />
       ))}

@@ -35,7 +35,7 @@ API 表格通过 Fumadocs TypeScript 插件读取 `../src` 的实际属性类型
 
 ## 说明
 
-本站不改变组件包的发布方式：组件包目前仍为私有 workspace 源码包。上游来源与 MIT 许可见上级 README 和 LICENSE。
+本站直接消费 workspace 源码；组件包仍为私有包，尚未发布到 npm registry。跨仓可以通过 `pnpm pack` 安装包含 ESM、CommonJS 和类型声明的构建产物，具体命令见上级 README。上游来源与 MIT 许可见上级 README 和 LICENSE。
 
 ## 浏览器回归检查
 
@@ -47,3 +47,12 @@ PLAYWRIGHT_CHANNEL=chrome pnpm docs:test
 ```
 
 测试会启动独立的 5176 端口开发服务，检查新增组件文档、1360 / 390 px 布局、明暗预览、原生表单提交与重置、键盘与焦点、Toast 排队及减少动态效果。失败时的截图和 trace 保存在被 Git 忽略的 `test-results` 中。
+
+[视觉规范与回归](http://127.0.0.1:5174/docs/visual-system)提供同屏对照。UI 巡检覆盖全部 53 个组件、两种宽度和明暗主题；截图基线位于 `tests/ui-regression.spec.ts-snapshots`，按平台区分。先审阅差异，再使用 `--update-snapshots` 更新，避免直接接受回归。
+
+Safari 同类引擎可单独验证表单、列表、浮层及场景组合：
+
+```sh
+pnpm --filter @lec-org/liquidglass-docs exec playwright install webkit
+pnpm --filter @lec-org/liquidglass-docs exec playwright test tests/foundation.spec.ts tests/management.spec.ts tests/blocks.spec.ts tests/calendar-pagination.spec.ts tests/range-navigation.spec.ts --grep-invert '截图' --config playwright.webkit.config.ts
+```

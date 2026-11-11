@@ -33,6 +33,27 @@
     "message",
     "toast",
     "empty",
-    "skeleton"
+    "skeleton",
+    "config-provider",
+    "typography",
+    "form-field",
+    "dialog",
+    "tabs",
+    "table",
+    "pagination",
+    "date-range-picker",
+    "data-table",
+    "filter-bar",
+    "multi-select",
+    "upload",
+    "drawer",
+    "tree",
+    "descriptions",
+    "statistic",
+    "member-picker",
+    "import-wizard",
+    "activity-calendar",
+    "command-palette",
+    "resizable-workspace"
   ]
 }

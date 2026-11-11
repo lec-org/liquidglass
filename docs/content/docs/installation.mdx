@@ -59,3 +59,20 @@ export default function Welcome() {
 ```
 
 为输入与图标按钮提供可访问名称。实际接口以各组件的 API 表格为准。
+
+## 跨仓安装构建产物
+
+在 LecOJ 根目录运行以下命令，生成可安装的 tarball：
+
+```sh
+pnpm --filter @lec-org/liquidglass pack --out /tmp/liquidglass.tgz
+```
+
+在其他仓库安装生成的文件即可。产物同时提供 ESM、CommonJS、类型声明和 CSS，应用无需处理组件库源码中的 Vite 专有导入。
+
+```tsx
+import { ConfigProvider, Dialog, DataTable } from "@lec-org/liquidglass";
+import { ResizableWorkspace } from "@lec-org/liquidglass/workspace";
+```
+
+分栏入口是可选功能，需要项目安装 `react-resizable-panels@^4.21.0`。基础组件不会加载面板引擎。

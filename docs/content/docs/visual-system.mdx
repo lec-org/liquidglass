@@ -1,0 +1,44 @@
+---
+title: 视觉规范与回归
+description: 共享尺寸、字阶、语义颜色与表面层级，保留液态玻璃的折射和触感。
+---
+
+<ComponentPreview name="visual-system" />
+
+## 统一规则
+
+| 项目 | 规则 |
+| --- | --- |
+| 控件高度 | 桌面小号 32、常规 40、大号 48px；粗指针设备至少 44px |
+| 字阶 | 常规控件 14px，说明 12–13px，正文 15px，区块标题 20–24px；触屏输入 16px |
+| 间距 | 4、8、12、16、24、32px，按关联程度递增 |
+| 圆角 | 操作与选择使用胶囊；列表项 12px；浮层 20px |
+| 状态色 | 成功、警告、错误均使用语义变量，分别适配浅色与深色背景 |
+| 焦点与禁用 | 统一 2px 焦点环；禁用透明度 0.45，同时保留原生语义 |
+
+按钮、搜索、选择器和日期输入在同一密度下保持等高。图标按钮使用正方形命中区域。导航与分段选择按信息层级独立布局，不靠随意放大字体突出操作。
+
+## 表面分层
+
+玻璃用于操作、导航和浮层，保留原有折射、边缘高光和按压反馈。表格、长文本和详情内容使用较实的表面，保证文字和数据清楚。不要将多层强折射叠在同一块正文上。
+
+Tabs 与通用控件使用同一玻璃渲染层；Dialog、Drawer、Popover 统一圆角与层级。Drawer 的出现和退出沿同一方向运动。
+
+系统请求减少动态效果时关闭浮层位移动画；请求减少透明度或提高对比度时，玻璃和内容面板一起切换为实色。宿主更换背景或强调色后，需要重新验证文字对比度。
+
+## 参考依据
+
+- [shadcn/ui 主题](https://ui.shadcn.com/docs/theming)：用语义变量区分内容、浮层、强调、边框和焦点，避免组件各自硬编码。
+- [Radix Themes](https://www.radix-ui.com/themes/docs/theme/overview) 与[间距](https://www.radix-ui.com/themes/docs/theme/spacing)：共享尺度和变体，让组合后的界面保持秩序。
+- [Radix 可访问性](https://www.radix-ui.com/primitives/docs/overview/accessibility)：一起检查语义、键盘导航与焦点恢复。
+- [Ant Design 字体](https://ant-design.antgroup.com/docs/spec/font-cn)：控制字阶与字重，数据使用等宽数字。
+
+这些参考用于确定结构与交互规则。材质与动效延续本组件库的液态玻璃实现。
+
+## 执行回归
+
+```sh
+PLAYWRIGHT_CHANNEL=chrome pnpm docs:test
+```
+
+回归覆盖全部组件的桌面、窄屏和明暗主题，并为本页及弹窗保存截图基线。基线名称包含运行平台；跨系统字体和浏览器差异需要在对应环境复核。确认视觉变化符合规范后，使用 Playwright 的 `--update-snapshots` 更新基线。

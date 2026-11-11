@@ -4,21 +4,62 @@
   "private": true,
   "type": "module",
   "license": "MIT",
-  "sideEffects": ["./src/index.ts", "*.css"],
+  "sideEffects": [
+    "./src/style-entry.ts",
+    "./src/index.ts",
+    "./src/workspace.tsx",
+    "./dist/*.js",
+    "./dist/*.cjs",
+    "**/*.css"
+  ],
   "exports": {
     ".": "./src/index.ts",
-    "./styles.css": "./src/styles.css"
+    "./styles.css": "./src/styles.css",
+    "./workspace": "./src/workspace.tsx"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build": "vite build && tsc -p tsconfig.build.json && node scripts/finalize-build.mjs",
+    "prepack": "pnpm build"
   },
   "peerDependencies": {
     "react": ">=18",
-    "react-dom": ">=18"
+    "react-dom": ">=18",
+    "react-resizable-panels": "^4.21.0"
   },
   "devDependencies": {
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vite": "8.3.7",
+    "react-resizable-panels": "4.21.0"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "peerDependenciesMeta": {
+    "react-resizable-panels": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/types/index.d.ts",
+        "import": "./dist/index.js",
+        "require": "./dist/index.cjs"
+      },
+      "./workspace": {
+        "types": "./dist/types/workspace.d.ts",
+        "import": "./dist/workspace.js",
+        "require": "./dist/workspace.cjs"
+      },
+      "./styles.css": "./dist/styles.css"
+    }
+  },
+  "dependencies": {
+    "@daypicker/react": "10.0.2"
   }
 }

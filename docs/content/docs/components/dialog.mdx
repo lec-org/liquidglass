@@ -1,0 +1,20 @@
+---
+title: Dialog 通用弹窗
+description: 承载表单、详情和异步操作。
+---
+
+<ComponentPreview name="dialog" />
+
+## 使用说明
+
+使用原生 dialog 管理焦点和背景隔离。异步确认由业务维护 loading 状态；设置 dismissible=false 可阻止操作期间的关闭。
+
+受控弹窗请把触发按钮的 ref 传给 `returnFocusRef`。Safari 的鼠标点击不一定会聚焦按钮，显式指定后关闭仍能回到正确入口；入口已卸载时不会强行聚焦。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/dialog.tsx"
+  type="Pick<DialogProps, 'open' | 'onOpenChange' | 'title' | 'description' | 'footer' | 'size' | 'dismissible' | 'initialFocusRef' | 'returnFocusRef'>"
+/>

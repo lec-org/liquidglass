@@ -1,0 +1,18 @@
+---
+title: MultiSelect 搜索多选
+description: 搜索、分组和选择多个值。
+---
+
+<ComponentPreview name="multi-select" />
+
+## 使用说明
+
+默认按标签和说明本地搜索。提供 onSearchChange 后由上层加载筛选结果，组件不请求接口。选中值可跨搜索结果保留；提交时每个值使用同一个 name，读取 FormData.getAll(name)。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/multi-select.tsx"
+  type="Pick<MultiSelectProps, 'options' | 'value' | 'defaultValue' | 'onValueChange' | 'onSearchChange' | 'loading' | 'name' | 'required' | 'maxSelected'>"
+/>

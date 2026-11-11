@@ -11,6 +11,7 @@ import {
   type RefAttributes,
   type SelectHTMLAttributes,
 } from "react";
+import { useConfig } from "./config-provider";
 import { useControllable } from "./internal/controllable";
 import { cx } from "./internal/cx";
 import { FieldError } from "./internal/field-error";
@@ -48,7 +49,7 @@ export const Select: ForwardRefExoticComponent<
     value: controlled,
     defaultValue = "",
     onValueChange,
-    placeholder = "请选择",
+    placeholder: configuredPlaceholder,
     className,
     style,
     id,
@@ -65,6 +66,8 @@ export const Select: ForwardRefExoticComponent<
   },
   forwardedRef,
 ) {
+  const { locale } = useConfig();
+  const placeholder = configuredPlaceholder ?? locale.choose;
   const anchor = useRef<HTMLButtonElement>(null);
   const native = useRef<HTMLSelectElement>(null);
   const [value, setValue] = useControllable(
@@ -230,6 +233,8 @@ export const Select: ForwardRefExoticComponent<
         onClick={(event) => {
           onClick?.(event);
           if (event.defaultPrevented) return;
+          // 自绘 combobox 的活动选项依赖触发器焦点，Safari 鼠标点击也需要显式聚焦。
+          anchor.current?.focus({ preventScroll: true });
           if (open) setOpen(false);
           else show();
         }}
@@ -264,7 +269,7 @@ export const Select: ForwardRefExoticComponent<
         >
           {options.length === 0 && (
             <div className="lg-select-empty" role="presentation">
-              暂无选项
+              {locale.empty}
             </div>
           )}
           {options.map((option, index) => (

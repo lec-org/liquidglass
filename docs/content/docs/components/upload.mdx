@@ -1,0 +1,18 @@
+---
+title: Upload 文件选择
+description: 选择或拖放文件，检查类型与大小。
+---
+
+<ComponentPreview name="upload" />
+
+## 使用说明
+
+文件通过 onValueChange 交给业务上传。校验失败会保留原有列表，accept、maxFiles、maxBytes 同时作用于选择和拖放。服务端仍需要独立校验文件。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/upload.tsx"
+  type="Pick<UploadProps, 'value' | 'onValueChange' | 'accept' | 'multiple' | 'maxFiles' | 'maxBytes' | 'disabled' | 'progress'>"
+/>

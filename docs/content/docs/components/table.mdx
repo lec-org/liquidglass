@@ -1,0 +1,20 @@
+---
+title: Table 表格
+description: 通过类型安全的列定义展示结构化数据。
+---
+
+<ComponentPreview name="table" />
+
+## 使用说明
+
+rowKey 必须稳定且唯一。caption 用于读屏命名，窄屏时表格容器可横向滚动。排序和分页等管理能力由 DataTable 组合提供。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/table.tsx"
+  type="Pick<TableProps<Record<string, unknown>>, 'columns' | 'data' | 'rowKey' | 'caption' | 'empty'>"
+/>
+
+结构化字段默认保持单行，在窄屏通过表格容器横向滚动。长描述列可以设置 `wrap: true`，按业务需要启用换行。

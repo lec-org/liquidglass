@@ -19,6 +19,7 @@ async function demo(page: Page, name: string) {
   await page.goto(`/docs/components/${name}`);
   const preview = page.getByRole("region", { name: `${name} 交互示例` });
   await expect(preview).toBeVisible();
+  await expect(preview).toHaveAttribute("data-interactive", "true");
   return preview;
 }
 
@@ -113,15 +114,26 @@ test("textarea submits and resets its text and counter", async ({ page }) => {
   const input = preview.getByRole("textbox", { name: "解题笔记" });
   // 原生校验仍阻止提交，但默认气泡已被取消，错误改为可访问的行内提示。
   await page.evaluate(() => {
-    document.addEventListener("invalid", (event) => {
-      setTimeout(() => { document.documentElement.dataset.invalidCanceled = String(event.defaultPrevented); }, 0);
-    }, true);
+    document.addEventListener(
+      "invalid",
+      (event) => {
+        setTimeout(() => {
+          document.documentElement.dataset.invalidCanceled = String(
+            event.defaultPrevented,
+          );
+        }, 0);
+      },
+      true,
+    );
   });
   await preview.getByRole("button", { name: "保存笔记" }).click();
   await expect(preview.getByRole("alert")).toHaveText("请填写内容后再提交。");
   await expect(input).toBeFocused();
   await expect(input).toHaveAttribute("aria-invalid", "true");
-  await expect(page.locator("html")).toHaveAttribute("data-invalid-canceled", "true");
+  await expect(page.locator("html")).toHaveAttribute(
+    "data-invalid-canceled",
+    "true",
+  );
   await input.fill("记录边界条件");
   await expect(preview.getByRole("alert")).toHaveCount(0);
   await expect(preview.locator(".lg-textarea-count")).toHaveText("6 / 120");

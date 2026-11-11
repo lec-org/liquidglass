@@ -1,0 +1,18 @@
+---
+title: ConfigProvider 全局配置
+description: 配置语言、方向、密度与局部主题。
+---
+
+<ComponentPreview name="config-provider" />
+
+## 使用说明
+
+嵌套配置继承未指定的选项。主题通过 CSS 变量传递，浮层保持所在 DOM 的局部主题。语言对象可覆盖部分文案。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/config-provider.tsx"
+  type="Pick<ConfigProviderProps, 'children' | 'locale' | 'density' | 'direction' | 'theme' | 'tokens'>"
+/>

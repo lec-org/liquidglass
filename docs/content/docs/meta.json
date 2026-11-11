@@ -4,8 +4,10 @@
     "index",
     "installation",
     "theming",
+    "visual-system",
     "playground",
     "components",
+    "examples",
     "compatibility"
   ]
 }

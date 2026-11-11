@@ -20,6 +20,7 @@ export default defineConfig({
     },
   ],
   webServer: {
+    env: { LIQUIDGLASS_DOCS_TEST_CACHE: "1" },
     command: "pnpm exec react-router dev --host 127.0.0.1 --port 5176",
     url: "http://127.0.0.1:5176",
     reuseExistingServer: !process.env.CI,

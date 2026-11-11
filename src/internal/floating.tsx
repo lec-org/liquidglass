@@ -18,6 +18,8 @@ interface FloatingProps extends HTMLAttributes<HTMLDivElement> {
   onDismiss: (reason: DismissReason) => void;
   focusOnOpen?: boolean;
   dismissOnBlur?: boolean;
+  /** 大型日历可在空间不足时覆盖触发器，优先使用完整视口高度。 */
+  allowAnchorOverlap?: boolean;
 }
 
 const useLayout = typeof window === "undefined" ? useEffect : useLayoutEffect;
@@ -33,6 +35,7 @@ export function Floating({
   onDismiss,
   focusOnOpen = false,
   dismissOnBlur = true,
+  allowAnchorOverlap = false,
   className,
   children,
   ...props
@@ -88,7 +91,8 @@ export function Floating({
         room[side] < needed && room[opposite[side]] > room[side]
           ? opposite[side]
           : side;
-      if (!horizontal) panel.style.maxHeight = `${Math.max(0, room[actual])}px`;
+      if (!horizontal && !allowAnchorOverlap)
+        panel.style.maxHeight = `${Math.max(0, room[actual])}px`;
       const width = panel.offsetWidth;
       const height = panel.offsetHeight;
       let left =
@@ -152,7 +156,7 @@ export function Floating({
       if (panel.hasAttribute("popover") && panel.matches(":popover-open"))
         panel.hidePopover();
     };
-  }, [anchor, side, align, focusOnOpen, dismissOnBlur]);
+  }, [anchor, side, align, focusOnOpen, dismissOnBlur, allowAnchorOverlap]);
 
   return (
     <div

@@ -1,0 +1,20 @@
+---
+title: Pagination 列表分页
+description: 切换页码与每页条数。
+---
+
+<ComponentPreview name="pagination" />
+
+## 使用说明
+
+组件受控，可驱动服务端分页。改变每页条数后，由业务按需重置页码。空列表仍提供稳定的第 1 页状态。
+
+每页条数复用玻璃 Select，显示「10 / 页」等完整标签，与页码和方向按钮等高；保留方向键、Enter 与 Escape 操作。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/pagination.tsx"
+  type="Pick<PaginationProps, 'total' | 'page' | 'pageSize' | 'onPageChange' | 'onPageSizeChange' | 'disabled'>"
+/>

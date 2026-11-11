@@ -1,0 +1,18 @@
+---
+title: ImportWizard 导入向导
+description: 组织选择文件、预检和发布流程。
+---
+
+<ComponentPreview name="import-wizard" />
+
+## 使用说明
+
+inspect 和 publish 接收 AbortSignal。重新选择和卸载会取消本次请求并忽略过期结果；发布期间禁止再次提交。发布失败保留预览以便重试，服务端应使用草稿 ID 实现幂等发布。示例只解析本地 JSON 姓名数组。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/import-wizard.tsx"
+  type="Pick<ImportWizardProps<unknown>, 'inspect' | 'publish' | 'renderPreview' | 'accept' | 'maxBytes' | 'title'>"
+/>

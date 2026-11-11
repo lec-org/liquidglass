@@ -1,0 +1,18 @@
+---
+title: DataTable 数据表格
+description: 组合排序、选择、列显隐和分页。
+---
+
+<ComponentPreview name="data-table" />
+
+## 使用说明
+
+data 表示当前页数据。比较器默认排序本页，服务端排序设置 manualSorting 并处理 onSortChange。分页只通知上层更新查询条件。选择键可跨页保留，稳定 rowKey 由业务提供。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/data-table.tsx"
+  type="Pick<DataTableProps<Record<string, unknown>>, 'columns' | 'data' | 'rowKey' | 'selection' | 'pagination' | 'sort' | 'manualSorting' | 'loading' | 'error'>"
+/>

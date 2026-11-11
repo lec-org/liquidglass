@@ -1,0 +1,6 @@
+/* 长示例截图不包含文档站的固定导航，组件自身的定位和布局保持原样。 */
+#nd-nav,
+#nd-subnav,
+[class*="grid-area:toc-popover"] {
+  visibility: hidden !important;
+}

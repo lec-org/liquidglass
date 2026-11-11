@@ -16,5 +16,7 @@ description: 轻盈的玻璃按钮，支持填充、图标与不同尺寸。
 <auto-type-table
   cwd
   path="../src/button.tsx"
-  type="Pick<ButtonProps, 'variant' | 'size' | 'tint' | 'icon' | 'destructive' | 'disabled'>"
+  type="Pick<ButtonProps, 'variant' | 'size' | 'tint' | 'loading' | 'icon' | 'destructive' | 'disabled'>"
 />
+
+等待异步操作时传入 loading，按钮保留可访问名称并阻止重复点击。错误处理和完成反馈由调用方维护。

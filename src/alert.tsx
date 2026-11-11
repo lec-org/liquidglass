@@ -1,4 +1,4 @@
-import { useEffect, useRef, type JSX, type ReactNode } from "react";
+import { useEffect, useId, useRef, type JSX, type ReactNode } from "react";
 
 import { useControllable } from "./internal/controllable";
 import { cx } from "./internal/cx";
@@ -25,7 +25,18 @@ export interface AlertProps {
 const LEAVE_MS = 120;
 
 /** The iOS alert: a modal question with a row of pill buttons. Closes when an action is chosen. */
-export function Alert({ open: openProp, defaultOpen = false, onOpenChange, title, message, actions, className }: AlertProps): JSX.Element {
+export function Alert({
+  open: openProp,
+  defaultOpen = false,
+  onOpenChange,
+  title,
+  message,
+  actions,
+  className,
+}: AlertProps): JSX.Element {
+  const id = useId();
+  const titleId = id + "-title";
+  const messageId = id + "-message";
   const [open, setOpen] = useControllable(openProp, defaultOpen, onOpenChange);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -46,19 +57,28 @@ export function Alert({ open: openProp, defaultOpen = false, onOpenChange, title
 
   useEffect(() => {
     if (phase !== "leaving") return;
-    const timer = setTimeout(() => done.current(), reducedMotion() ? 0 : LEAVE_MS);
+    const timer = setTimeout(
+      () => done.current(),
+      reducedMotion() ? 0 : LEAVE_MS,
+    );
     return () => clearTimeout(timer);
   }, [phase]);
 
-  const describedBy = message == null ? undefined : "lg-alert-message";
+  const describedBy = message == null ? undefined : messageId;
   return (
-    <dialog ref={dialogRef} className={cx("lg-modal lg-alert", className)} data-phase={phase} aria-labelledby="lg-alert-title" aria-describedby={describedBy}>
+    <dialog
+      ref={dialogRef}
+      className={cx("lg-modal lg-alert", className)}
+      data-phase={phase}
+      aria-labelledby={titleId}
+      aria-describedby={describedBy}
+    >
       {phase === "closed" ? null : (
         <>
           <span className="lg-modal-scrim" aria-hidden />
           <div ref={cardRef} className="lg-glass lg-alert-card">
             <div className="lg-alert-text">
-              <h2 id="lg-alert-title" className="lg-alert-title">
+              <h2 id={titleId} className="lg-alert-title">
                 {title}
               </h2>
               {message == null ? null : (
@@ -67,13 +87,18 @@ export function Alert({ open: openProp, defaultOpen = false, onOpenChange, title
                 </p>
               )}
             </div>
-            <div className="lg-alert-actions" data-stacked={actions.length > 2 ? "" : undefined}>
+            <div
+              className="lg-alert-actions"
+              data-stacked={actions.length > 2 ? "" : undefined}
+            >
               {actions.map((action, index) => (
                 <button
                   key={index}
                   type="button"
                   className="lg-alert-action"
-                  data-destructive={action.role === "destructive" ? "" : undefined}
+                  data-destructive={
+                    action.role === "destructive" ? "" : undefined
+                  }
                   onClick={() => {
                     action.onSelect?.();
                     setOpen(false);

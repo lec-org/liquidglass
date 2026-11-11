@@ -1,0 +1,18 @@
+---
+title: CommandPalette 快捷命令
+description: 搜索应用命令并通过键盘执行。
+---
+
+<ComponentPreview name="command-palette" />
+
+## 使用说明
+
+上下键选择、Enter 执行、Escape 关闭并恢复焦点。应用级宿主可以为唯一实例启用 shortcut，绑定 Cmd/Ctrl+K；组件站示例通过按钮打开，避免抢占文档搜索快捷键。
+
+## API
+
+<auto-type-table
+  cwd
+  path="../src/command-palette.tsx"
+  type="Pick<CommandPaletteProps, 'open' | 'onOpenChange' | 'commands' | 'title' | 'shortcut' | 'returnFocusRef'>"
+/>
