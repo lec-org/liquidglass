@@ -1,6 +1,8 @@
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "vite";
+import { defineConfig, searchForWorkspaceRoot } from "vite";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { fumadocsMdx } from "fumadocs-mdx/vite";
 import { remarkAutoTypeTable } from "fumadocs-typescript";
 
@@ -33,5 +35,15 @@ export default defineConfig({
       "@lec-space/liquidglass > react-resizable-panels",
     ],
   },
-  server: { strictPort: true, watch: { ignored: ["**/build/**"] } },
+  server: {
+    strictPort: true,
+    watch: { ignored: ["**/build/**"] },
+    fs: {
+      // 独立安装与平台安装的依赖根目录不同，两种布局都要允许读取路由客户端入口。
+      allow: [
+        searchForWorkspaceRoot(process.cwd()),
+        searchForWorkspaceRoot(dirname(fileURLToPath(import.meta.resolve("@react-router/dev/vite")))),
+      ],
+    },
+  },
 });
